@@ -14,6 +14,10 @@ statis mana pun.
 
 ---
 
+> **Baru pertama kali merawat situs?** Baca [PANDUAN.md](PANDUAN.md) — panduan
+> langkah demi langkah untuk memperbarui situs sendiri, termasuk cara mengunggah
+> materi kuliah, menambah publikasi, dan mengatasi masalah yang umum terjadi.
+
 ## 1. Melihat situs di komputer sendiri
 
 Membuka `index.html` dengan klik ganda **tidak disarankan** karena berkas PDF dan

@@ -79,6 +79,22 @@ refs = re.findall(r'"f": ?"([^"]+)"', body)
 missing = [r for r in refs if not os.path.exists(r)]
 ok("berkas materi tersedia", f"{len(refs)} berkas") if not missing else bad("berkas hilang", "; ".join(missing[:3]))
 
+# saklar penerbitan harus sejalan dengan .gitignore
+_ign = False
+if os.path.exists(".gitignore"):
+    _ign = any(l.strip().rstrip("/") == "materi" for l in open(".gitignore", encoding="utf-8"))
+_flag = re.search(r"window\.MATERI_TERSEDIA\s*=\s*(true|false)", cj)
+_flag = (_flag.group(1) == "true") if _flag else True
+if _ign and _flag:
+    bad("saklar materi tidak sinkron",
+        "materi/ diabaikan .gitignore tetapi MATERI_TERSEDIA=true -> tautan unduh akan rusak")
+elif (not _ign) and (not _flag) and refs:
+    bad("saklar materi tidak sinkron",
+        "materi/ ikut terbit tetapi MATERI_TERSEDIA=false -> berkas terunggah tetapi tersembunyi")
+else:
+    ok("saklar materi sinkron",
+       ("belum diterbitkan" if _ign else "diterbitkan") + f" ({len(refs)} berkas)")
+
 orphan = []
 for dirpath, _, files in os.walk("materi"):
     for f in files:
