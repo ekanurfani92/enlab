@@ -7,6 +7,7 @@ materi/*
 
 # --- mata kuliah yang sudah disortir dan boleh terbit ---
 !materi/fisika-dasar-2-mt/
+!materi/fisika-dasar-tpb/
 
 __pycache__/
 *.pyc
