@@ -1,8 +1,12 @@
-# Materi kuliah belum diunggah: berkas masih disortir untuk memastikan
-# tidak ada materi berhak cipta pihak ketiga yang ikut terbit.
-# Setelah selesai disortir: hapus baris "materi/" di bawah ini, lalu ubah
-# window.MATERI_TERSEDIA menjadi true pada assets/js/data-courses.js
-materi/
+# Penerbitan materi kuliah dikendalikan per mata kuliah.
+#
+# Baris "materi/*" menahan SELURUH isi folder materi/. Untuk menerbitkan satu
+# mata kuliah, tambahkan satu baris pengecualian "!materi/<slug>/" di bawahnya.
+# Jalankan "python3 tools/sync_materi.py" setelah mengubah berkas ini.
+materi/*
+
+# --- mata kuliah yang sudah disortir dan boleh terbit ---
+!materi/fisika-dasar-2-mt/
 
 __pycache__/
 *.pyc

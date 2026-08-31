@@ -35,14 +35,17 @@ def load_courses():
     return json.loads(out.stdout)
 
 
-def materi_diterbitkan():
-    """materi/ ikut terbit bila tidak lagi dicantumkan di .gitignore."""
-    if not os.path.exists(".gitignore"):
-        return True
-    for line in open(".gitignore", encoding="utf-8"):
-        if line.strip().rstrip("/") == "materi":
-            return False
-    return True
+def diterbitkan(slug):
+    """Satu mata kuliah terbit bila foldernya tidak ditahan .gitignore.
+
+    Git sendiri yang menjadi sumber kebenaran, sehingga daftar di situs tidak
+    mungkin berbeda dengan berkas yang benar-benar terunggah."""
+    try:
+        r = subprocess.run(["git", "check-ignore", "-q", f"materi/{slug}"],
+                           capture_output=True)
+        return r.returncode != 0          # 0 = ditahan, 1 = boleh terbit
+    except Exception:
+        return False                      # bila git tidak tersedia: tahan (aman)
 
 
 
@@ -98,6 +101,7 @@ def main():
             if m["f"] not in {x["f"] for x in baru}:
                 hapus.append(m["f"])
         c["m"] = baru
+        c["pub"] = diterbitkan(c["slug"])
         total += len(baru)
 
     # PDF yang tergeletak langsung di materi/ tidak akan pernah terpakai:
@@ -113,13 +117,8 @@ def main():
             if os.path.isdir(os.path.join("materi", d)) and d not in slug_sah:
                 folder_asing.append(d)
 
-    terbit = materi_diterbitkan()
+    terbit_count = sum(1 for c in courses if c["pub"])
     out = [
-        "/* Saklar penerbitan materi kuliah - DIATUR OTOMATIS oleh tools/sync_materi.py.",
-        "   Nilainya mengikuti .gitignore: selama baris \"materi/\" masih ada di sana,",
-        "   berkas tidak ikut terbit sehingga tautan unduh disembunyikan. */",
-        f"window.MATERI_TERSEDIA = {'true' if terbit else 'false'};",
-        "",
         "/* Daftar mata kuliah yang diampu Dr. Eka Nurfani.",
         "   Bagian \"m\" diselaraskan otomatis dengan isi folder materi/.",
         "   Jangan sunting tangan: tambah atau hapus berkas PDF-nya, lalu jalankan",
@@ -138,7 +137,13 @@ def main():
     print(f"  dikeluarkan             : {len(hapus)}")
     for p in hapus[:8]:
         print("      - " + p)
-    print(f"  window.MATERI_TERSEDIA  : {'true (tautan unduh TAMPIL)' if terbit else 'false (tautan unduh disembunyikan)'}")
+    print(f"  mata kuliah terbit      : {terbit_count} dari {len(courses)}")
+    for c in courses:
+        if c["pub"]:
+            print(f"      terbit  {c['slug']:32s} {len(c['m'])} berkas")
+    tertahan = sum(len(c["m"]) for c in courses if not c["pub"])
+    if tertahan:
+        print(f"      ditahan {'(belum disortir)':32s} {tertahan} berkas")
 
     if nyasar:
         print(f"\n  PERHATIAN: {len(nyasar)} berkas PDF tergeletak langsung di materi/")
@@ -154,7 +159,8 @@ def main():
         print("  Nama folder harus sama persis dengan slug mata kuliah (lihat BACA-INI.txt).")
 
     curiga = [(m["f"], berkas_mencurigakan(m["f"]))
-              for c in courses for m in c["m"] if berkas_mencurigakan(m["f"])]
+              for c in courses if c["pub"]
+              for m in c["m"] if berkas_mencurigakan(m["f"])]
     if curiga:
         print(f"\n  PERIKSA LAGI: {len(curiga)} berkas bernama seperti dokumen administratif.")
         print("  Jangan terbitkan RPS bertanda tangan, daftar nilai, soal ujian, atau kunci jawaban.")
@@ -169,9 +175,10 @@ def main():
         print("  Tautannya tetap berfungsi, tetapi nama sederhana lebih rapi di URL.")
         for f in aneh[:5]:
             print("      ~ " + f)
-    if not terbit and total:
-        print("\n  Catatan: berkas sudah terdaftar tetapi belum diterbitkan.")
-        print("  Untuk menerbitkannya, hapus baris \"materi/\" pada .gitignore lalu jalankan skrip ini lagi.")
+    if tertahan:
+        print("\n  Untuk menerbitkan satu mata kuliah, tambahkan barisnya di .gitignore:")
+        print("      !materi/<slug>/")
+        print("  lalu jalankan skrip ini lagi.")
     return 0
 
 

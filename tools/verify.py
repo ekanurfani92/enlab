@@ -79,34 +79,44 @@ refs = re.findall(r'"f": ?"([^"]+)"', body)
 missing = [r for r in refs if not os.path.exists(r)]
 ok("berkas materi tersedia", f"{len(refs)} berkas") if not missing else bad("berkas hilang", "; ".join(missing[:3]))
 
-# saklar penerbitan harus sejalan dengan .gitignore
-_ign = False
-if os.path.exists(".gitignore"):
-    _ign = any(l.strip().rstrip("/") == "materi" for l in open(".gitignore", encoding="utf-8"))
-_flag = re.search(r"window\.MATERI_TERSEDIA\s*=\s*(true|false)", cj)
-_flag = (_flag.group(1) == "true") if _flag else True
-if _ign and _flag:
-    bad("saklar materi tidak sinkron",
-        "materi/ diabaikan .gitignore tetapi MATERI_TERSEDIA=true -> tautan unduh akan rusak")
-elif (not _ign) and (not _flag) and refs:
-    bad("saklar materi tidak sinkron",
-        "materi/ ikut terbit tetapi MATERI_TERSEDIA=false -> berkas terunggah tetapi tersembunyi")
+# Penerbitan diatur per mata kuliah. Kolom "pub" pada data harus sejalan
+# dengan keputusan git, agar daftar di situs tidak pernah menjanjikan berkas
+# yang sebenarnya tidak ikut terunggah.
+_courses = json.loads(subprocess.run(
+    ["node", "-e", "global.window={};require('./assets/js/data-courses.js');"
+                   "console.log(JSON.stringify(window.COURSES));"],
+    capture_output=True, text=True, check=True).stdout)
+
+def _ditahan(slug):
+    return subprocess.run(["git", "check-ignore", "-q", f"materi/{slug}"],
+                          capture_output=True).returncode == 0
+
+_beda = []
+for _c in _courses:
+    if bool(_c.get("pub")) == _ditahan(_c["slug"]):
+        _beda.append(_c["slug"])
+_terbit = [c for c in _courses if c.get("pub")]
+_n_terbit = sum(len(c["m"]) for c in _terbit)
+if _beda:
+    bad("status terbit tidak sinkron", ", ".join(_beda[:3]) + " (jalankan tools/sync_materi.py)")
 else:
-    ok("saklar materi sinkron",
-       ("belum diterbitkan" if _ign else "diterbitkan") + f" ({len(refs)} berkas)")
+    ok("status terbit sinkron",
+       f"{len(_terbit)} mata kuliah terbit, {_n_terbit} berkas")
 
 _TERLARANG = {"rps", "kontrak", "nilai", "dna", "kunci", "jawaban", "rubrik",
               "absensi", "presensi", "uas", "uts", "quiz", "ujian", "penilaian"}
 _curiga = []
-for _r in refs:
-    _kata = set(re.split(r"[^a-z0-9]+", os.path.basename(_r).lower()))
-    if _kata & _TERLARANG:
-        _curiga.append(_r)
-if _curiga and not _ign:
-    # Hanya menggagalkan bila berkas benar-benar akan ikut terbit.
-    bad("berkas administratif akan terbit", "; ".join(_curiga[:3]))
+for _c in _courses:
+    for _m in _c["m"]:
+        _kata = set(re.split(r"[^a-z0-9]+", os.path.basename(_m["f"]).lower()))
+        if _kata & _TERLARANG:
+            _curiga.append((_m["f"], bool(_c.get("pub"))))
+_akan_terbit = [f for f, pub in _curiga if pub]
+if _akan_terbit:
+    bad("berkas administratif akan terbit", "; ".join(_akan_terbit[:3]))
 elif _curiga:
-    print("  \033[33mCATATAN\033[0m nama mirip dokumen administratif: " + ", ".join(_curiga[:3]))
+    print("  \033[33mCATATAN\033[0m nama mirip dokumen administratif (masih ditahan): "
+          + ", ".join(f for f, _ in _curiga[:3]))
 else:
     ok("tidak ada berkas administratif")
 

@@ -123,9 +123,19 @@ Hapus berkas yang tidak ingin diterbitkan. Tambahkan yang baru bila ada.
 **Tidak perlu menyunting berkas JavaScript apa pun** — daftarnya diselaraskan
 otomatis pada langkah 3.
 
-**Langkah 2 — izinkan materi ikut terbit.**
-Buka `.gitignore`, hapus baris `materi/`. Berkas itu boleh disunting dengan
-TextEdit atau editor apa pun.
+**Langkah 2 — izinkan mata kuliah itu terbit.**
+Penerbitan diatur **per mata kuliah**, sehingga Anda dapat menerbitkan satu
+mata kuliah sambil menyortir sisanya dengan tenang.
+
+Buka `.gitignore`, tambahkan satu baris di bawah bagian penanda:
+
+```
+!materi/karakterisasi-material/
+```
+
+Ganti `karakterisasi-material` dengan slug mata kuliah yang dituju (daftar
+lengkapnya ada di `materi/BACA-INI.txt`). Tanda seru berarti "kecualikan dari
+penahanan".
 
 **Langkah 3 — terbitkan.**
 
@@ -136,8 +146,18 @@ bash tools/publish.sh "terbitkan materi kuliah"
 Skrip akan mendaftar ulang berkas yang benar-benar ada, menyalakan tautan
 unduh, memeriksa, lalu mengunggah.
 
-**Menambah materi baru di kemudian hari:** cukup taruh PDF di folder mata
-kuliah yang sesuai, lalu jalankan `bash tools/publish.sh "tambah materi"`.
+**Menambah materi baru di kemudian hari:** untuk mata kuliah yang sudah
+pernah terbit, cukup taruh PDF di foldernya lalu jalankan
+`bash tools/publish.sh "tambah materi"`. Tidak perlu menyentuh `.gitignore` lagi.
+
+**Memeriksa apa saja yang akan terbit** tanpa mengunggah apa pun:
+
+```bash
+python3 tools/sync_materi.py
+```
+
+Perintah itu menampilkan mata kuliah mana yang terbit, mana yang masih
+ditahan, dan berapa berkasnya.
 
 **Memperkecil PDF yang besar** (di atas ~5 MB):
 

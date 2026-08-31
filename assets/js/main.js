@@ -330,7 +330,7 @@
     var meta = el('div', 'course-meta');
     if (c.sks) meta.appendChild(el('span', 'chip chip-neutral', c.sks + ' ' + t('teach.sks')));
     meta.appendChild(el('span', 'chip chip-neutral', c.prodiName[lang]));
-    if (c.m.length && window.MATERI_TERSEDIA) {
+    if (c.m.length && c.pub) {
       meta.appendChild(el('span', 'chip', c.m.length + ' ' + t('teach.materials')));
     }
     title.appendChild(meta);
@@ -348,7 +348,7 @@
     body.appendChild(el('p', null, c.d[lang]));
     if (c.note) body.appendChild(el('p', 'course-note', c.note[lang]));
 
-    if (c.m.length && window.MATERI_TERSEDIA) {
+    if (c.m.length && c.pub) {
       var ul = el('ul', 'material-list');
       c.m.forEach(function (m) {
         var li = el('li');
@@ -391,8 +391,10 @@
 
       var countEl = document.getElementById('course-count');
       if (countEl) {
-        var files = window.COURSES.reduce(function (n, c) { return n + c.m.length; }, 0);
-        countEl.textContent = window.MATERI_TERSEDIA
+        var files = window.COURSES.reduce(function (n, c) {
+          return n + (c.pub ? c.m.length : 0);
+        }, 0);
+        countEl.textContent = files
           ? t('teach.count').replace('{n}', String(window.COURSES.length))
                             .replace('{m}', String(files))
           : t('teach.count.soon').replace('{n}', String(window.COURSES.length));
