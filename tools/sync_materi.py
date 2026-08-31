@@ -86,6 +86,19 @@ def main():
         c["m"] = baru
         total += len(baru)
 
+    # PDF yang tergeletak langsung di materi/ tidak akan pernah terpakai:
+    # setiap berkas harus berada di dalam folder mata kuliah.
+    nyasar = []
+    if os.path.isdir("materi"):
+        nyasar = sorted(f for f in os.listdir("materi") if f.lower().endswith(".pdf"))
+
+    slug_sah = {c["slug"] for c in courses}
+    folder_asing = []
+    if os.path.isdir("materi"):
+        for d in sorted(os.listdir("materi")):
+            if os.path.isdir(os.path.join("materi", d)) and d not in slug_sah:
+                folder_asing.append(d)
+
     terbit = materi_diterbitkan()
     out = [
         "/* Saklar penerbitan materi kuliah - DIATUR OTOMATIS oleh tools/sync_materi.py.",
@@ -112,6 +125,27 @@ def main():
     for p in hapus[:8]:
         print("      - " + p)
     print(f"  window.MATERI_TERSEDIA  : {'true (tautan unduh TAMPIL)' if terbit else 'false (tautan unduh disembunyikan)'}")
+
+    if nyasar:
+        print(f"\n  PERHATIAN: {len(nyasar)} berkas PDF tergeletak langsung di materi/")
+        print("  dan TIDAK akan tampil di situs. Pindahkan ke folder mata kuliahnya:")
+        for f in nyasar[:8]:
+            print("      ? materi/" + f)
+        print("  Daftar folder yang tersedia ada di materi/BACA-INI.txt")
+
+    if folder_asing:
+        print(f"\n  PERHATIAN: folder berikut tidak dikenali dan diabaikan:")
+        for d in folder_asing[:8]:
+            print("      ? materi/" + d + "/")
+        print("  Nama folder harus sama persis dengan slug mata kuliah (lihat BACA-INI.txt).")
+
+    aneh = [m["f"] for c in courses for m in c["m"]
+            if re.search(r"[^A-Za-z0-9/._-]", m["f"])]
+    if aneh:
+        print(f"\n  Catatan: {len(aneh)} nama berkas memuat spasi atau karakter khusus.")
+        print("  Tautannya tetap berfungsi, tetapi nama sederhana lebih rapi di URL.")
+        for f in aneh[:5]:
+            print("      ~ " + f)
     if not terbit and total:
         print("\n  Catatan: berkas sudah terdaftar tetapi belum diterbitkan.")
         print("  Untuk menerbitkannya, hapus baris \"materi/\" pada .gitignore lalu jalankan skrip ini lagi.")

@@ -352,7 +352,9 @@
       c.m.forEach(function (m) {
         var li = el('li');
         var a = el('a', 'material');
-        a.href = m.f;
+        // Nama berkas boleh memuat spasi atau huruf beraksen;
+        // tiap ruas jalur disandikan agar tautannya tetap sah.
+        a.href = m.f.split('/').map(encodeURIComponent).join('/');
         a.target = '_blank';
         a.rel = 'noopener';
         a.setAttribute('aria-label', t('teach.download') + ': ' + m.t);
