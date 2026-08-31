@@ -473,6 +473,11 @@ p { margin: 0; text-wrap: pretty; }
 .course[open] .course-caret { transform: rotate(180deg); color: var(--brand); border-color: var(--brand); }
 .course-body { padding: 0 clamp(20px, 2.4vw, 28px) 24px; border-top: 1px solid var(--line); padding-top: 20px; }
 .course-body > p { color: var(--muted); font-size: .93rem; margin-bottom: 18px; }
+.course-note {
+  border-left: 3px solid var(--accent); padding: 10px 14px;
+  background: var(--accent-soft); border-radius: 0 var(--r-xs) var(--r-xs) 0;
+  font-size: .88rem !important;
+}
 
 .material-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .material {

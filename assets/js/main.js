@@ -346,6 +346,7 @@
 
     var body = el('div', 'course-body');
     body.appendChild(el('p', null, c.d[lang]));
+    if (c.note) body.appendChild(el('p', 'course-note', c.note[lang]));
 
     if (c.m.length && window.MATERI_TERSEDIA) {
       var ul = el('ul', 'material-list');
