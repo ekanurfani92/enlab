@@ -1,0 +1,13 @@
+{
+  "name": "ENLab - ENergy Materials and Semiconductor Laboratory",
+  "short_name": "ENLab",
+  "description": "Kelompok riset material energi dan semikonduktor, Program Studi Teknik Material, Institut Teknologi Sumatera.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#0a4f96",
+  "icons": [
+    { "src": "assets/img/favicon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/og-image.png", "sizes": "1200x630", "type": "image/png" }
+  ]
+}

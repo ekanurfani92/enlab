@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ekanurfani92.github.io/enlab/sitemap.xml

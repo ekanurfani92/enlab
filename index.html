@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a4f96" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#050e1c" media="(prefers-color-scheme: dark)">
+  <meta name="author" content="Dr. Eka Nurfani, S.Si., M.Si.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ekanurfani92.github.io/enlab/">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="180x180">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ENLab ITERA">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://ekanurfani92.github.io/enlab/">
+  <meta property="og:title" content="ENLab | Laboratorium Material Energi dan Semikonduktor ITERA">
+  <meta property="og:description" content="Kelompok riset material energi dan semikonduktor: sel surya perovskit, DSSC, superkapasitor, fotodetektor, dan fotokatalisis di Program Studi Teknik Material, Institut Teknologi Sumatera.">
+  <meta property="og:image" content="https://ekanurfani92.github.io/enlab/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ENLab | Laboratorium Material Energi dan Semikonduktor ITERA">
+  <meta name="twitter:description" content="Kelompok riset material energi dan semikonduktor: sel surya perovskit, DSSC, superkapasitor, fotodetektor, dan fotokatalisis di Program Studi Teknik Material, Institut Teknologi Sumatera.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    /* Terapkan tema sebelum render agar tidak berkedip, dan tandai JS aktif
+       sehingga konten tetap terlihat bila JavaScript dimatikan. */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        var s = localStorage.getItem('enlab-theme');
+        if (s === 'dark' || s === 'light') d.setAttribute('data-theme', s);
+      } catch (e) {}
+    })();
+  </script>
+  <title data-i18n="meta.title.home">ENLab | Laboratorium Material Energi dan Semikonduktor ITERA</title>
+  <meta name="description" content="Kelompok riset material energi dan semikonduktor: sel surya perovskit, DSSC, superkapasitor, fotodetektor, dan fotokatalisis di Program Studi Teknik Material, Institut Teknologi Sumatera.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ResearchOrganization",
+        "@id": "https://ekanurfani92.github.io/enlab/#lab",
+        "name": "ENLab",
+        "alternateName": "ENergy Materials and Semiconductor Laboratory",
+        "url": "https://ekanurfani92.github.io/enlab/",
+        "description": "Kelompok riset material energi dan semikonduktor di Program Studi Teknik Material, Institut Teknologi Sumatera.",
+        "email": "eka.nurfani@mt.itera.ac.id",
+        "parentOrganization": {
+          "@type": "CollegeOrUniversity",
+          "name": "Institut Teknologi Sumatera",
+          "url": "https://www.itera.ac.id"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gedung D Ruang D208, Jalan Terusan Ryacudu, Way Huwi",
+          "addressLocality": "Jati Agung",
+          "addressRegion": "Lampung Selatan, Lampung",
+          "postalCode": "35365",
+          "addressCountry": "ID"
+        },
+        "knowsAbout": [
+          "Perovskite solar cells", "Dye-sensitized solar cells", "Supercapacitors",
+          "Metal oxide thin films", "Photodetectors", "Photocatalysis", "ZnO", "TiO2"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://ekanurfani92.github.io/enlab/#eka-nurfani",
+        "name": "Eka Nurfani",
+        "honorificPrefix": "Dr.",
+        "jobTitle": "Kepala ENLab, Lektor Kepala",
+        "email": "eka.nurfani@mt.itera.ac.id",
+        "worksFor": { "@id": "https://ekanurfani92.github.io/enlab/#lab" },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Universitas Jenderal Soedirman" },
+          { "@type": "CollegeOrUniversity", "name": "Institut Teknologi Bandung" }
+        ],
+        "sameAs": [
+          "https://scholar.google.com/citations?user=5Sz8OyAAAAAJ",
+          "https://www.scopus.com/authid/detail.uri?authorId=57190941043",
+          "https://sinta.kemdikbud.go.id/authors/profile/6659724"
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Lompat ke konten utama</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="ENLab">
+        <img class="brand-logo" src="assets/img/logo-emblem.png" alt="" width="68" height="40">
+        <span class="brand-text">
+          <strong>ENLab</strong>
+          <span data-i18n="brand.sub" data-i18n-html><b>EN</b>ergy Materials and Semiconductor Laboratory</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Utama">
+        <a href="index.html#about" data-i18n="nav.about">Tentang</a>
+        <a href="index.html#research" data-i18n="nav.research">Riset</a>
+        <a href="index.html#team" data-i18n="nav.team">Tim</a>
+        <a href="index.html#facilities" data-i18n="nav.facilities">Fasilitas</a>
+        <a href="publications.html" data-i18n="nav.publications">Publikasi</a>
+        <a href="teaching.html" data-i18n="nav.teaching">Pengajaran</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Kontak</a>
+      </nav>
+
+      <div class="nav-tools">
+        <div class="lang-switch" role="group" aria-label="Bahasa / Language">
+          <button type="button" data-lang-btn="id" aria-pressed="true">ID</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="icon-btn theme-toggle"
+                data-i18n="nav.theme" data-i18n-attr="aria-label"
+                aria-label="Ganti mode terang/gelap">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg>
+        </button>
+        <button type="button" class="icon-btn menu-toggle" aria-controls="site-nav" aria-expanded="false"
+                data-i18n="nav.menu" data-i18n-attr="aria-label" aria-label="Buka menu navigasi">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow" data-i18n="hero.eyebrow">Material Energi - Semikonduktor - Divais</span>
+          <h1>
+            <span data-i18n="hero.h1a">Material </span><em data-i18n="hero.h1b">Energi</em><span data-i18n="hero.h1c"> dan Semikonduktor</span>
+          </h1>
+          <p class="hero-lead" data-i18n="hero.lead">Kami merancang, mensintesis, dan mengkarakterisasi lapisan tipis serta nanomaterial oksida logam untuk sel surya perovskit, DSSC, superkapasitor, fotodetektor swadaya, sensor, dan fotokatalisis.</p>
+          <p class="hero-affil">
+            <span class="chip chip-accent">ITERA</span>
+            <span data-i18n="hero.affil">Program Studi Teknik Material, Institut Teknologi Sumatera</span>
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#research" data-i18n="hero.cta1">Jelajahi riset kami</a>
+            <a class="btn btn-ghost" href="#contact" data-i18n="hero.cta2">Bergabung dengan lab</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>57</strong><span data-i18n="hero.stat1">Publikasi ilmiah</span></div>
+            <div><strong>19</strong><span data-i18n="hero.stat2">Hibah penelitian</span></div>
+            <div><strong>70+</strong><span data-i18n="hero.stat3">Mahasiswa bimbingan</span></div>
+            <div><strong>3</strong><span data-i18n="hero.stat4">Paten terdaftar</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal d1">
+          <div class="logo-plate">
+            <img src="assets/img/logo-enlab.png"
+                 alt="Logo ENLab - ENergy Materials and Semiconductor Laboratory"
+                 width="380" height="451" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TENTANG ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="about.eyebrow">Tentang ENLab</span>
+          <h2 data-i18n="about.h2">Merekayasa material untuk masa depan energi yang lebih bersih.</h2>
+          <p data-i18n="about.p1">ENLab (ENergy Materials and Semiconductor Laboratory) adalah kelompok riset di Program Studi Teknik Material, Institut Teknologi Sumatera, yang berfokus pada desain, sintesis, fabrikasi, dan karakterisasi material energi dan semikonduktor.</p>
+        </div>
+        <p class="section-head reveal d1" data-i18n="about.p2" style="margin-top:-24px">Riset kami menjembatani ilmu material, fisika semikonduktor, elektrokimia, dan rekayasa divais - dari penumbuhan lapisan tipis oksida logam hingga pengujian kinerja sel surya, superkapasitor, dan sensor.</p>
+        <div class="grid-3">
+          <article class="card card-hover reveal">
+            <span class="eyebrow">01</span>
+            <h3 style="margin:14px 0 8px" data-i18n="about.m1t">Inovasi</h3>
+            <p style="color:var(--muted);font-size:.94rem" data-i18n="about.m1d">Mengembangkan material fungsional dan arsitektur divais dengan peningkatan kinerja yang terukur.</p>
+          </article>
+          <article class="card card-hover reveal d1">
+            <span class="eyebrow">02</span>
+            <h3 style="margin:14px 0 8px" data-i18n="about.m2t">Kolaborasi</h3>
+            <p style="color:var(--muted);font-size:.94rem" data-i18n="about.m2d">Menghubungkan mahasiswa, peneliti, industri, dan mitra institusi melalui riset yang berdampak.</p>
+          </article>
+          <article class="card card-hover reveal d2">
+            <span class="eyebrow">03</span>
+            <h3 style="margin:14px 0 8px" data-i18n="about.m3t">Pendidikan</h3>
+            <p style="color:var(--muted);font-size:.94rem" data-i18n="about.m3d">Membangun keterampilan eksperimen, analisis, dan komunikasi ilmiah bagi peneliti muda.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RISET ============ -->
+    <section class="section section-sunk" id="research">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="res.eyebrow">Bidang Riset</span>
+          <h2 data-i18n="res.h2">Dari sintesis material hingga divais fungsional.</h2>
+          <p data-i18n="res.lead">Enam tema riset utama yang dikerjakan bersama mahasiswa tugas akhir dan mitra kolaborasi.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card card-hover research-card reveal">
+            <div class="ico" aria-hidden="true">&#9728;</div>
+            <h3 data-i18n="res.1t">Sel Surya Perovskit</h3>
+            <p data-i18n="res.1d">Fabrikasi MAPbI3 pada kondisi udara terbuka, rekayasa antarmuka TiO2, variasi molaritas prekursor, dan peningkatan stabilitas.</p>
+            <span class="chip" data-i18n="res.1k">Fotovoltaik</span>
+          </article>
+          <article class="card card-hover research-card reveal d1">
+            <div class="ico" aria-hidden="true">&#9673;</div>
+            <h3 data-i18n="res.2t">Sel Surya Tersensitisasi Pewarna</h3>
+            <p data-i18n="res.2d">Pewarna alami, fotoanoda semikonduktor, elektrolit, dan konversi energi surya berbiaya rendah.</p>
+            <span class="chip" data-i18n="res.2k">Energi Surya</span>
+          </article>
+          <article class="card card-hover research-card reveal d2">
+            <div class="ico" aria-hidden="true">&#9889;</div>
+            <h3 data-i18n="res.3t">Superkapasitor</h3>
+            <p data-i18n="res.3d">Nanorod MnO2, komposit NiO-MnO2, evolusi fasa akibat suhu sintering, dan penyimpanan energi elektrokimia.</p>
+            <span class="chip" data-i18n="res.3k">Penyimpanan Energi</span>
+          </article>
+          <article class="card card-hover research-card reveal">
+            <div class="ico" aria-hidden="true">&#9707;</div>
+            <h3 data-i18n="res.4t">Lapisan Tipis &amp; Semikonduktor</h3>
+            <p data-i18n="res.4d">ZnO, TiO2, NiO, ITO, dan oksida terdoping (Cu, Fe, Mg, Ni, Al, Ti) melalui spray pyrolysis, spin coating, dan hidrotermal.</p>
+            <span class="chip" data-i18n="res.4k">Material Fungsional</span>
+          </article>
+          <article class="card card-hover research-card reveal d1">
+            <div class="ico" aria-hidden="true">&#10022;</div>
+            <h3 data-i18n="res.5t">Fotodetektor &amp; Sensor</h3>
+            <p data-i18n="res.5d">Fotodetektor swadaya berbasis heterojunction ZnO/p-Si, deteksi UV, dan sensor gas berlapis nanofiber.</p>
+            <span class="chip" data-i18n="res.5k">Divais Cerdas</span>
+          </article>
+          <article class="card card-hover research-card reveal d2">
+            <div class="ico" aria-hidden="true">&#9678;</div>
+            <h3 data-i18n="res.6t">Fotokatalisis</h3>
+            <p data-i18n="res.6d">Heterojunction CeO2/ZnO dan film TiO2 termodifikasi untuk degradasi polutan organik dalam air limbah.</p>
+            <span class="chip" data-i18n="res.6k">Material Berkelanjutan</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIM ============ -->
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="team.eyebrow">Tim Kami</span>
+          <h2 data-i18n="team.h2">Riset tumbuh melalui kolaborasi.</h2>
+          <p data-i18n="team.lead">Dipimpin oleh Dr. Eka Nurfani bersama mahasiswa sarjana Teknik Material ITERA.</p>
+        </div>
+        <div class="grid-4">
+          <article class="person reveal">
+            <div class="person-photo">
+              <img src="assets/img/eka-nurfani.jpg" alt="Dr. Eka Nurfani, S.Si., M.Si." loading="lazy" width="400" height="440">
+            </div>
+            <div class="person-body">
+              <h3>Dr. Eka Nurfani, S.Si., M.Si.</h3>
+              <p class="person-role" data-i18n="team.pi.role">Kepala Laboratorium - Lektor Kepala</p>
+              <small data-i18n="team.pi.field">Fisika Material - Lapisan Tipis Oksida - Divais Energi</small>
+              <small style="margin-top:10px" data-i18n="team.pi.bio">Menyelesaikan S-1 Fisika di Universitas Jenderal Soedirman, lalu S-2 dan S-3 Fisika Material di Institut Teknologi Bandung melalui program PMDSU. Aktif meneliti lapisan tipis ZnO dan TiO2 sejak 2014.</small>
+              <div class="person-links">
+                <a href="https://scholar.google.com/citations?user=5Sz8OyAAAAAJ" target="_blank" rel="noopener">Scholar</a>
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=57190941043" target="_blank" rel="noopener">Scopus</a>
+                <a href="https://sinta.kemdikbud.go.id/authors/profile/6659724" target="_blank" rel="noopener">SINTA</a>
+              </div>
+            </div>
+          </article>
+          <article class="person reveal d1">
+            <div class="person-photo" aria-hidden="true">TA</div>
+            <div class="person-body">
+              <h3 data-i18n="team.slot2t">Mahasiswa Tugas Akhir</h3>
+              <p class="person-role" data-i18n="team.slot2r">Sarjana Teknik Material</p>
+              <small data-i18n="team.slot2d">Menjalankan riset sel surya perovskit, DSSC, superkapasitor, TCO, dan MXene sebagai proyek tugas akhir.</small>
+            </div>
+          </article>
+          <article class="person reveal d2">
+            <div class="person-photo" aria-hidden="true">KL</div>
+            <div class="person-body">
+              <h3 data-i18n="team.slot3t">Kolaborator</h3>
+              <p class="person-role" data-i18n="team.slot3r">ITERA - ITB - BRIN - Mitra Internasional</p>
+              <small data-i18n="team.slot3d">Kolaborasi lintas institusi pada skema RIIM LPDP-BRIN, Penelitian Fundamental Kemdikbudristek, dan Riset Kolaborasi Indonesia.</small>
+            </div>
+          </article>
+          <article class="person reveal d3">
+            <div class="person-photo" aria-hidden="true">AL</div>
+            <div class="person-body">
+              <h3 data-i18n="team.slot4t">Alumni</h3>
+              <p class="person-role" data-i18n="team.slot4r">Lulusan sejak 2019</p>
+              <small data-i18n="team.slot4d">Lebih dari 70 mahasiswa telah menyelesaikan tugas akhir di laboratorium ini, sebagian melanjutkan studi pascasarjana.</small>
+            </div>
+          </article>
+        </div>
+        <p style="margin-top:26px">
+          <a class="text-link" href="#contact" data-i18n="team.join">Tertarik bergabung? Lihat cara mendaftar</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ FASILITAS ============ -->
+    <section class="section section-sunk" id="facilities">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="fac.eyebrow">Fasilitas</span>
+          <h2 data-i18n="fac.h2">Peralatan fabrikasi, sintesis, dan pengujian.</h2>
+          <p data-i18n="fac.lead">Laboratorium mengoperasikan peralatan komersial sekaligus instrumen rakitan sendiri yang dirancang dan dibangun di ITERA.</p>
+        </div>
+        <div class="grid-2" style="align-items:start">
+          <div style="display:grid;gap:12px">
+            <article class="facility reveal"><b>01</b><div><h3 data-i18n="fac.1t">Fabrikasi Lapisan Tipis</h3><p data-i18n="fac.1d">Spin coater Ossila, spray pyrolysis berbasis nebulizer, hot plate magnetic stirrer, dan tungku pemanas.</p></div></article>
+            <article class="facility reveal d1"><b>02</b><div><h3 data-i18n="fac.2t">Sintesis Material</h3><p data-i18n="fac.2d">Autoclave hidrotermal 100 mL (6 unit), preparasi prekursor, sonikasi, pengadukan, dan perlakuan panas.</p></div></article>
+            <article class="facility reveal d2"><b>03</b><div><h3 data-i18n="fac.3t">Pengujian Divais</h3><p data-i18n="fac.3d">Stasiun pengukuran J-V dengan simulator surya LED rakitan sendiri, stasiun light soaking untuk uji stabilitas, dan sel elektrokimia kustom 100 mL.</p></div></article>
+          </div>
+          <div style="display:grid;gap:12px">
+            <article class="facility reveal d1"><b>04</b><div><h3 data-i18n="fac.4t">Karakterisasi Material</h3><p data-i18n="fac.4d">Akses ke fasilitas karakterisasi struktur, morfologi, optik, dan elektrokimia (XRD, SEM, UV-Vis DRS, voltametri siklik).</p></div></article>
+            <article class="facility reveal d2"><b>05</b><div><h3 data-i18n="fac.5t">Instrumen Rakitan Sendiri</h3><p data-i18n="fac.5d">Spin coater, stasiun simulator J-V berbasis LED, dan stasiun light soaking dirancang dan dirakit di laboratorium beserta dokumentasi manual pembuatannya.</p></div></article>
+            <div class="card reveal d3" style="background:var(--surface-3);border-color:transparent">
+              <span class="eyebrow">ITERA</span>
+              <p style="margin-top:12px;color:var(--muted);font-size:.93rem" data-i18n="fac.cta">Ajukan informasi penggunaan fasilitas</p>
+              <p style="margin-top:14px"><a class="text-link" href="#contact" data-i18n="contact.email">Surel</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PUBLIKASI (cuplikan) ============ -->
+    <section class="section" id="publications">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="pub.eyebrow">Publikasi</span>
+          <h2 data-i18n="pub.h2">Luaran riset terpilih.</h2>
+          <p data-i18n="pub.lead">57 artikel pada jurnal internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.</p>
+        </div>
+        <ul class="pub-list reveal" id="pub-latest"></ul>
+        <p style="margin-top:24px">
+          <a class="btn btn-ghost" href="publications.html" data-i18n="pub.all">Lihat seluruh publikasi</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ PENDANAAN ============ -->
+    <section class="section" id="funding">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="grant.eyebrow">Pendanaan</span>
+          <h2 data-i18n="grant.h2">Hibah penelitian terkini.</h2>
+          <p data-i18n="grant.lead">Riset laboratorium didukung pendanaan nasional dan internal institusi.</p>
+        </div>
+        <ul class="pub-list reveal" id="grant-list"></ul>
+        <p class="pub-count" style="margin-top:18px" data-i18n="grant.all">Riwayat lengkap tersedia pada CV</p>
+      </div>
+    </section>
+
+    <!-- ============ PENGAJARAN (cuplikan) ============ -->
+    <section class="section section-sunk" id="teaching">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="teach.eyebrow">Pengajaran</span>
+          <h2 data-i18n="teach.h2">Mata kuliah yang diampu.</h2>
+          <p data-i18n="teach.lead">Mata kuliah yang diampu di Program Studi Teknik Material dan Tahap Persiapan Bersama. Slide kuliah akan tersedia untuk diunduh secara bertahap.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card card-hover reveal">
+            <span class="chip chip-neutral">3 sks</span>
+            <h3 style="margin:14px 0 8px">Karakterisasi Material</h3>
+            <p style="color:var(--muted);font-size:.93rem">SEM, TEM, XRD, XRF, UV-Vis, PL, dan voltametri siklik.</p>
+          </article>
+          <article class="card card-hover reveal d1">
+            <span class="chip chip-neutral">4 sks</span>
+            <h3 style="margin:14px 0 8px">Fisika Dasar II</h3>
+            <p style="color:var(--muted);font-size:.93rem">Elektrostatika, magnetostatika, gelombang EM, dan fisika modern.</p>
+          </article>
+          <article class="card card-hover reveal d2">
+            <span class="chip chip-neutral">3 sks</span>
+            <h3 style="margin:14px 0 8px">Material Keramik</h3>
+            <p style="color:var(--muted);font-size:.93rem">Struktur keramik, sintering, sifat dielektrik, dan sifat optik.</p>
+          </article>
+        </div>
+        <p style="margin-top:24px">
+          <a class="btn btn-primary" href="teaching.html" data-i18n="teach.all">Lihat daftar mata kuliah</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ GALERI ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="gal.eyebrow">Keseharian di ENLab</span>
+          <h2 data-i18n="gal.h2">Riset dalam aksi.</h2>
+        </div>
+        <div class="gallery-grid reveal">
+          <div class="tile tile-1"><div><b data-i18n="gal.1">Sintesis Material</b><span data-i18n="gal.1s">Hidrotermal &amp; sol-gel</span></div></div>
+          <div class="tile tile-2"><div><b data-i18n="gal.2">Fabrikasi Lapisan Tipis</b><span data-i18n="gal.2s">Spin coating &amp; spray pyrolysis</span></div></div>
+          <div class="tile tile-3"><div><b data-i18n="gal.3">Pengujian Divais</b><span data-i18n="gal.3s">Pengukuran J-V &amp; light soaking</span></div></div>
+          <div class="tile tile-4"><div><b data-i18n="gal.4">Karakterisasi</b><span data-i18n="gal.4s">XRD, SEM, UV-Vis</span></div></div>
+          <div class="tile tile-5"><div><b data-i18n="gal.5">Riset Mahasiswa</b><span data-i18n="gal.5s">Tugas akhir sarjana</span></div></div>
+          <div class="tile tile-6"><div><b data-i18n="gal.6">Diskusi Ilmiah</b><span data-i18n="gal.6s">Seminar &amp; bimbingan</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KONTAK ============ -->
+    <section class="section section-sunk" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="contact.eyebrow">Kontak</span>
+          <h2 data-i18n="contact.h2">Kunjungi laboratorium kami.</h2>
+        </div>
+        <div class="contact-grid">
+          <ul class="contact-list reveal">
+            <li>
+              <i aria-hidden="true">&#9873;</i>
+              <div>
+                <b data-i18n="contact.addr">Alamat</b>
+                <span data-i18n="contact.addrv">Gedung D Ruang D208, Program Studi Teknik Material, Institut Teknologi Sumatera, Jalan Terusan Ryacudu, Way Huwi, Jati Agung, Lampung Selatan 35365</span>
+              </div>
+            </li>
+            <li>
+              <i aria-hidden="true">&#9993;</i>
+              <div>
+                <b data-i18n="contact.email">Surel</b>
+                <a href="mailto:eka.nurfani@mt.itera.ac.id">eka.nurfani@mt.itera.ac.id</a>
+              </div>
+            </li>
+            <li>
+              <i aria-hidden="true">&#9679;</i>
+              <div>
+                <b data-i18n="contact.profile">Profil peneliti</b>
+                <span>
+                  <a href="https://scholar.google.com/citations?user=5Sz8OyAAAAAJ" target="_blank" rel="noopener">Google Scholar</a> &middot;
+                  <a href="https://www.scopus.com/authid/detail.uri?authorId=57190941043" target="_blank" rel="noopener">Scopus</a> &middot;
+                  <a href="https://sinta.kemdikbud.go.id/authors/profile/6659724" target="_blank" rel="noopener">SINTA</a>
+                </span>
+              </div>
+            </li>
+          </ul>
+          <div class="map-embed reveal d1">
+            <iframe
+              src="https://www.google.com/maps?q=Institut+Teknologi+Sumatera&amp;z=15&amp;output=embed"
+              title="Peta lokasi Institut Teknologi Sumatera"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="cta reveal" style="margin-top:40px">
+          <div>
+            <span class="eyebrow" data-i18n="cta.eyebrow">Mari Berkolaborasi</span>
+            <h2 data-i18n="cta.h2">Tertarik meneliti, berkolaborasi, atau bergabung dengan ENLab?</h2>
+            <p data-i18n="cta.p">Kami menerima mahasiswa tugas akhir, peneliti, mitra akademik, dan kolaborator industri yang bekerja pada material maju dan teknologi energi berkelanjutan.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="mailto:eka.nurfani@mt.itera.ac.id" data-i18n="cta.mail">Kirim email</a>
+            <a class="btn btn-outline-light" href="#main" data-i18n="cta.top">Kembali ke atas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="index.html" aria-label="ENLab">
+            <img class="brand-logo" src="assets/img/logo-emblem.png" alt="" width="68" height="40">
+            <span class="brand-text"><strong>ENLab</strong></span>
+          </a>
+          <p class="footer-tagline" data-i18n="brand.tagline">Inovasi Material untuk Teknologi Energi dan Semikonduktor</p>
+          <p data-i18n="foot.about">Kelompok riset material energi dan semikonduktor di Program Studi Teknik Material, Institut Teknologi Sumatera.</p>
+        </div>
+        <div>
+          <h4 data-i18n="foot.explore">Jelajahi</h4>
+          <ul>
+            <li><a href="index.html#about" data-i18n="nav.about">Tentang</a></li>
+            <li><a href="index.html#research" data-i18n="nav.research">Riset</a></li>
+            <li><a href="index.html#team" data-i18n="nav.team">Tim</a></li>
+            <li><a href="index.html#facilities" data-i18n="nav.facilities">Fasilitas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="foot.resource">Sumber Daya</h4>
+          <ul>
+            <li><a href="publications.html" data-i18n="nav.publications">Publikasi</a></li>
+            <li><a href="teaching.html" data-i18n="nav.teaching">Pengajaran</a></li>
+            <li><a href="https://scholar.google.com/citations?user=5Sz8OyAAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+            <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57190941043" target="_blank" rel="noopener">Scopus</a></li>
+            <li><a href="https://sinta.kemdikbud.go.id/authors/profile/6659724" target="_blank" rel="noopener">SINTA</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="foot.contact">Kontak</h4>
+          <ul>
+            <li><a href="mailto:eka.nurfani@mt.itera.ac.id">eka.nurfani@mt.itera.ac.id</a></li>
+            <li><a href="https://mt.itera.ac.id" target="_blank" rel="noopener" data-i18n="foot.prodi">Program Studi Teknik Material</a></li>
+            <li><a href="https://www.itera.ac.id" target="_blank" rel="noopener" data-i18n="foot.itera">Institut Teknologi Sumatera</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year>2026</span> ENLab, ITERA. <span data-i18n="foot.rights">Seluruh hak cipta dilindungi.</span></span>
+        <span><span data-i18n="foot.updated">Pembaruan terakhir</span>: <time datetime="2026-08-31">2026-08-31</time></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/data-publications.js"></script>
+  <script src="assets/js/data-courses.js"></script>
+  <script src="assets/js/data-grants.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Materi kuliah belum diunggah: berkas masih disortir untuk memastikan
+# tidak ada materi berhak cipta pihak ketiga yang ikut terbit.
+# Setelah selesai disortir: hapus baris "materi/" di bawah ini, lalu ubah
+# window.MATERI_TERSEDIA menjadi true pada assets/js/data-courses.js
+materi/
+
+__pycache__/
+*.pyc
+.DS_Store
