@@ -291,6 +291,10 @@ git log --oneline
   itu menyandikan inisial pendiri laboratorium.
 - **Jangan sunting tangan** bagian `"m"` pada `data-courses.js`; jalankan
   `python3 tools/sync_materi.py`.
-- **Jangan unggah** buku teks atau materi pihak ketiga. Hanya slide karya
-  sendiri.
+- **Jangan unggah** buku teks atau materi pihak ketiga, RPS bertanda tangan,
+  daftar nilai, absensi, soal ujian, kunci jawaban, atau rubrik penilaian.
+  Hanya slide dan bahan belajar karya sendiri. Latihan soal beserta
+  pembahasannya boleh, selama bukan soal ujian yang dinilai.
+  Pemeriksa akan **membatalkan pengunggahan** bila menemukan nama berkas
+  seperti `rps`, `nilai`, `uas`, `kunci`, `jawaban`, atau `rubrik`.
 - **Jangan cantumkan** nama mahasiswa tanpa persetujuan yang bersangkutan.

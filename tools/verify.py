@@ -95,6 +95,21 @@ else:
     ok("saklar materi sinkron",
        ("belum diterbitkan" if _ign else "diterbitkan") + f" ({len(refs)} berkas)")
 
+_TERLARANG = {"rps", "kontrak", "nilai", "dna", "kunci", "jawaban", "rubrik",
+              "absensi", "presensi", "uas", "uts", "quiz", "ujian", "penilaian"}
+_curiga = []
+for _r in refs:
+    _kata = set(re.split(r"[^a-z0-9]+", os.path.basename(_r).lower()))
+    if _kata & _TERLARANG:
+        _curiga.append(_r)
+if _curiga and not _ign:
+    # Hanya menggagalkan bila berkas benar-benar akan ikut terbit.
+    bad("berkas administratif akan terbit", "; ".join(_curiga[:3]))
+elif _curiga:
+    print("  \033[33mCATATAN\033[0m nama mirip dokumen administratif: " + ", ".join(_curiga[:3]))
+else:
+    ok("tidak ada berkas administratif")
+
 orphan = []
 for dirpath, _, files in os.walk("materi"):
     for f in files:

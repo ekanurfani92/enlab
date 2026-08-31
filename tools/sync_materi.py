@@ -45,6 +45,20 @@ def materi_diterbitkan():
     return True
 
 
+
+# Kata yang menandai berkas administratif atau rahasia. Dicocokkan per kata,
+# bukan potongan, agar "latihan-soal" tidak ikut tertandai.
+KATA_TERLARANG = {
+    "rps", "kontrak", "nilai", "dna", "kunci", "jawaban", "rubrik",
+    "absensi", "presensi", "uas", "uts", "quiz", "ujian", "penilaian",
+}
+
+
+def berkas_mencurigakan(path):
+    kata = set(re.split(r"[^a-z0-9]+", os.path.basename(path).lower()))
+    return sorted(kata & KATA_TERLARANG)
+
+
 def judul_dari_nama(nama):
     t = re.sub(r"\.pdf$", "", nama, flags=re.I)
     t = re.sub(r"^\d+[a-z]?[-_. ]+", "", t)          # buang nomor urut di depan
@@ -138,6 +152,15 @@ def main():
         for d in folder_asing[:8]:
             print("      ? materi/" + d + "/")
         print("  Nama folder harus sama persis dengan slug mata kuliah (lihat BACA-INI.txt).")
+
+    curiga = [(m["f"], berkas_mencurigakan(m["f"]))
+              for c in courses for m in c["m"] if berkas_mencurigakan(m["f"])]
+    if curiga:
+        print(f"\n  PERIKSA LAGI: {len(curiga)} berkas bernama seperti dokumen administratif.")
+        print("  Jangan terbitkan RPS bertanda tangan, daftar nilai, soal ujian, atau kunci jawaban.")
+        for f, kata in curiga[:8]:
+            print(f"      ! {f}   (kata: {', '.join(kata)})")
+        print("  Bila berkas ini memang materi belajar, abaikan pesan ini.")
 
     aneh = [m["f"] for c in courses for m in c["m"]
             if re.search(r"[^A-Za-z0-9/._-]", m["f"])]
