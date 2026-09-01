@@ -484,6 +484,28 @@ p { margin: 0; text-wrap: pretty; }
   border: 1px dashed var(--line-strong); border-radius: var(--r-md);
 }
 
+/* Tugas akhir: dikelompokkan per tahun agar topik tiap angkatan terbaca utuh. */
+.thesis-groups { display: grid; gap: clamp(30px, 4vw, 46px); }
+.thesis-group-head {
+  display: flex; align-items: baseline; gap: 14px;
+  padding-bottom: 12px; margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.thesis-group-head h2 {
+  font-family: var(--font-head); font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: var(--brand); letter-spacing: -0.02em; margin: 0;
+}
+.thesis-group-n { font-size: .84rem; color: var(--muted); font-weight: 600; }
+.thesis-list { display: grid; gap: 12px; list-style: none; padding: 0; margin: 0; }
+.thesis {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 18px 22px;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.thesis:hover { border-color: var(--brand); box-shadow: var(--shadow-sm); }
+.thesis h3 { font-size: 1rem; line-height: 1.45; margin: 0 0 6px; font-weight: 700; }
+.thesis-by { color: var(--muted); font-size: .88rem; font-weight: 600; }
+
 /* ---------- 9. Teaching ---------- */
 .course {
   background: var(--surface); border: 1px solid var(--line);
@@ -663,6 +685,13 @@ p { margin: 0; text-wrap: pretty; }
 }
 
 /* ---------- 14. Responsive ---------- */
+@media (max-width: 1320px) {
+  .nav-wrap { gap: 10px; }
+  .brand-text span { display: none; }
+  .site-nav { gap: clamp(0px, .6vw, 8px); }
+  .site-nav a { font-size: .87rem; padding: 8px 7px; }
+}
+
 @media (max-width: 1080px) {
   .hero-grid { grid-template-columns: 1fr; }
   /* Teks tetap didahulukan; visual hanya pelengkap. */
@@ -672,7 +701,7 @@ p { margin: 0; text-wrap: pretty; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .menu-toggle { display: grid; }
   .site-nav {
     position: fixed; inset: 74px 0 auto; z-index: 899;

@@ -323,6 +323,127 @@
     render();
   }
 
+  /* ---------- Perender: tugas akhir mahasiswa ---------- */
+  function thesisNode(x) {
+    var li = el('li', 'thesis');
+    li.appendChild(el('h3', null, x.t[lang]));
+    li.appendChild(el('p', 'thesis-by', x.n));
+    return li;
+  }
+
+  /* Kelompokkan per tahun agar pengunjung bisa membaca topik tahun demi tahun. */
+  function thesisGroups(rows) {
+    var frag = document.createDocumentFragment();
+    var years = [];
+    var byYear = {};
+    rows.forEach(function (x) {
+      if (!byYear[x.y]) { byYear[x.y] = []; years.push(x.y); }
+      byYear[x.y].push(x);
+    });
+    years.sort(function (a, b) { return b - a; });
+
+    years.forEach(function (y) {
+      var sec = el('section', 'thesis-group reveal');
+      var head = el('div', 'thesis-group-head');
+      head.appendChild(el('h2', null, String(y)));
+      head.appendChild(el('span', 'thesis-group-n',
+        t('thesis.group.n').replace('{n}', String(byYear[y].length))));
+      sec.appendChild(head);
+
+      var ul = el('ul', 'thesis-list');
+      byYear[y].forEach(function (x) { ul.appendChild(thesisNode(x)); });
+      sec.appendChild(ul);
+      frag.appendChild(sec);
+    });
+    return frag;
+  }
+
+  function initTheses() {
+    var host = document.getElementById('thesis-list');
+    if (!host || !window.THESES) return;
+
+    var all = window.THESES;
+    var search = document.getElementById('thesis-search');
+    var yearSel = document.getElementById('thesis-year');
+    var countEl = document.getElementById('thesis-count');
+    var state = { q: '', year: 'all' };
+
+    if (yearSel) {
+      var years = Array.from(new Set(all.map(function (x) { return x.y; })))
+        .sort(function (a, b) { return b - a; });
+      var optAll = el('option', null, t('thesis.year.all'));
+      optAll.value = 'all';
+      optAll.setAttribute('data-i18n', 'thesis.year.all');
+      yearSel.appendChild(optAll);
+      years.forEach(function (y) {
+        var o = el('option', null, String(y));
+        o.value = String(y);
+        yearSel.appendChild(o);
+      });
+    }
+
+    function render() {
+      var q = state.q.trim().toLowerCase();
+      var rows = all.filter(function (x) {
+        if (state.year !== 'all' && String(x.y) !== state.year) return false;
+        if (q && (x.n + ' ' + x.t.id + ' ' + x.t.en).toLowerCase().indexOf(q) < 0) return false;
+        return true;
+      });
+
+      host.textContent = '';
+      if (!rows.length) {
+        var empty = el('div', 'empty-state');
+        var msg = el('p', null, t('thesis.empty'));
+        msg.setAttribute('data-i18n', 'thesis.empty');
+        empty.appendChild(msg);
+        var reset = el('button', 'btn btn-ghost btn-sm', t('thesis.reset'));
+        reset.type = 'button';
+        reset.style.marginTop = '16px';
+        reset.addEventListener('click', function () {
+          state.q = ''; state.year = 'all';
+          if (search) search.value = '';
+          if (yearSel) yearSel.value = 'all';
+          render();
+        });
+        empty.appendChild(reset);
+        host.appendChild(empty);
+      } else {
+        host.appendChild(thesisGroups(rows));
+        initReveal();
+      }
+
+      if (countEl) {
+        countEl.textContent = t('thesis.count')
+          .replace('{n}', String(rows.length))
+          .replace('{total}', String(all.length));
+      }
+    }
+
+    if (search) {
+      search.addEventListener('input', function () { state.q = search.value; render(); });
+    }
+    if (yearSel) {
+      yearSel.addEventListener('change', function () { state.year = yearSel.value; render(); });
+    }
+    document.addEventListener('langchange', render);
+    render();
+  }
+
+  /* ---------- Perender: tugas akhir terbaru (beranda) ---------- */
+  function initLatestTheses() {
+    var host = document.getElementById('thesis-latest');
+    if (!host || !window.THESES) return;
+    var newest = Math.max.apply(null, window.THESES.map(function (x) { return x.y; }));
+    var rows = window.THESES.filter(function (x) { return x.y === newest; });
+    function render() {
+      host.textContent = '';
+      host.appendChild(thesisGroups(rows));
+      initReveal();
+    }
+    document.addEventListener('langchange', render);
+    render();
+  }
+
   /* ---------- Perender: mata kuliah ---------- */
   function courseNode(c) {
     var d = el('details', 'course reveal');
@@ -480,6 +601,8 @@
     initPublications();
     initLatestPublications();
     initGrants();
+    initTheses();
+    initLatestTheses();
     initCourses();
     initCoursePage();
 

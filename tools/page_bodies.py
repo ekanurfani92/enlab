@@ -163,6 +163,7 @@ INDEX_BODY = """
             <h3 data-i18n="team.slot4t">Alumni</h3>
             <p class="person-role" data-i18n="team.slot4r">Lulusan sejak 2019</p>
             <p data-i18n="team.slot4d">Lebih dari 70 mahasiswa telah menyelesaikan tugas akhir di laboratorium ini.</p>
+            <p style="margin-top:12px"><a class="text-link" href="theses.html" data-i18n="thesis.all">Lihat seluruh judul tugas akhir</a></p>
           </article>
         </div>
         <p style="margin-top:26px">
@@ -223,6 +224,21 @@ INDEX_BODY = """
         </div>
         <ul class="pub-list reveal" id="grant-list"></ul>
         <p class="pub-count" style="margin-top:18px" data-i18n="grant.all">Riwayat lengkap tersedia pada CV</p>
+      </div>
+    </section>
+
+    <!-- ============ TUGAS AKHIR (cuplikan) ============ -->
+    <section class="section" id="theses">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="thesis.eyebrow">Tugas Akhir</span>
+          <h2 data-i18n="thesis.h2">Topik tugas akhir mahasiswa, tahun demi tahun.</h2>
+          <p data-i18n="thesis.lead">Setiap tahun laboratorium ini meluluskan mahasiswa dengan topik yang saling menyambung.</p>
+        </div>
+        <div class="thesis-groups" id="thesis-latest">__LATEST__</div>
+        <p style="margin-top:24px">
+          <a class="btn btn-ghost" href="theses.html" data-i18n="thesis.all">Lihat seluruh judul tugas akhir</a>
+        </p>
       </div>
     </section>
 
@@ -395,6 +411,36 @@ PUBLICATIONS_BODY = """
 
         <p class="pub-count" id="pub-count"></p>
         <ul class="pub-list" id="pub-list"></ul>
+      </div>
+    </section>
+"""
+
+THESES_BODY = """
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-i18n="nav.home">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span data-i18n="nav.theses">Tugas Akhir</span>
+        </nav>
+        <h1 data-i18n="thesis.page.h1">Tugas Akhir Mahasiswa</h1>
+        <p data-i18n="thesis.page.lead">Judul tugas akhir mahasiswa bimbingan Dr. Eka Nurfani, diurutkan dari tahun kelulusan terbaru.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:clamp(30px,4vw,48px)">
+      <div class="container">
+        <div class="filters">
+          <label class="sr-only" for="thesis-search" data-i18n="thesis.search">Cari judul atau nama mahasiswa</label>
+          <input type="search" id="thesis-search" data-i18n="thesis.search" data-i18n-attr="placeholder"
+                 placeholder="Cari judul, nama mahasiswa, atau kata kunci...">
+          <label class="sr-only" for="thesis-year" data-i18n="thesis.year.all">Semua tahun</label>
+          <select id="thesis-year"></select>
+        </div>
+
+        <p class="pub-count" id="thesis-count"></p>
+        <div class="thesis-groups" id="thesis-list">__FALLBACK__</div>
+        <p class="pub-count" style="margin-top:30px" data-i18n="thesis.note">Sebagian tugas akhir pada daftar ini dibimbing bersama dosen lain.</p>
       </div>
     </section>
 """

@@ -93,6 +93,7 @@ def header(active=""):
         <a href="index.html#team" data-i18n="nav.team">Tim</a>
         <a href="index.html#facilities" data-i18n="nav.facilities">Fasilitas</a>
         <a href="publications.html\"""" + cur("pub") + """ data-i18n="nav.publications">Publikasi</a>
+        <a href="theses.html\"""" + cur("theses") + """ data-i18n="nav.theses">Tugas Akhir</a>
         <a href="teaching.html\"""" + cur("teach") + """ data-i18n="nav.teaching">Pengajaran</a>
         <a href="index.html#contact" data-i18n="nav.contact">Kontak</a>
       </nav>
@@ -142,6 +143,7 @@ FOOTER = """  <footer class="site-footer">
           <h4 data-i18n="foot.resource">Sumber Daya</h4>
           <ul>
             <li><a href="publications.html" data-i18n="nav.publications">Publikasi</a></li>
+            <li><a href="theses.html" data-i18n="nav.theses">Tugas Akhir</a></li>
             <li><a href="teaching.html" data-i18n="nav.teaching">Pengajaran</a></li>
             <li><a href="https://scholar.google.com/citations?user=5Sz8OyAAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
             <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57190941043" target="_blank" rel="noopener">Scopus</a></li>
@@ -168,6 +170,7 @@ FOOTER = """  <footer class="site-footer">
   <script src="assets/js/data-publications.js"></script>
   <script src="assets/js/data-courses.js"></script>
   <script src="assets/js/data-grants.js"></script>
+  <script src="assets/js/data-theses.js"></script>
   <script src="assets/js/main.js"></script>
 """
 
@@ -233,6 +236,40 @@ def _courses():
     out = subprocess.run(["node", "-e", src], cwd=ROOT,
                          capture_output=True, text=True, check=True)
     return json.loads(out.stdout)
+
+
+def _theses():
+    """Daftar tugas akhir dibaca dari sumber yang sama dengan yang dipakai situs."""
+    src = ("global.window={};require('./assets/js/data-theses.js');"
+           "console.log(JSON.stringify(window.THESES));")
+    out = subprocess.run(["node", "-e", src], cwd=ROOT,
+                         capture_output=True, text=True, check=True)
+    return json.loads(out.stdout)
+
+
+def theses_fallback(theses, dic):
+    """Cadangan HTML statis daftar tugas akhir.
+
+    main.js menggambar ulang bagian ini dari window.THESES, tetapi teks di sini
+    yang dibaca mesin pencari dan pengunjung tanpa JavaScript.
+    """
+    esc = lambda x: _html.escape(x, quote=False)
+    years = sorted({x["y"] for x in theses}, reverse=True)
+    out = []
+    for y in years:
+        rows = [x for x in theses if x["y"] == y]
+        items = "".join(
+            '\n            <li class="thesis"><h3>%s</h3>'
+            '<p class="thesis-by">%s</p></li>'
+            % (esc(x["t"]["id"]), esc(x["n"]))
+            for x in rows)
+        out.append(
+            '\n        <section class="thesis-group reveal">'
+            '\n          <div class="thesis-group-head"><h2>%d</h2>'
+            '<span class="thesis-group-n">%s</span></div>'
+            '\n          <ul class="thesis-list">%s\n          </ul>'
+            '\n        </section>' % (y, esc(dic["thesis.group.n"].replace("{n}", str(len(rows)))), items))
+    return "".join(out) + "\n      "
 
 
 def _q(path):
@@ -313,6 +350,7 @@ def course_body(c, dic):
 def write_sitemap(courses):
     urls = [(SITE_URL + "/", "1.0"),
             (SITE_URL + "/publications.html", "0.8"),
+            (SITE_URL + "/theses.html", "0.8"),
             (SITE_URL + "/teaching.html", "0.8")]
     urls += [(SITE_URL + "/mk/" + c["slug"] + ".html", "0.7")
              for c in courses if c.get("pub")]
@@ -430,19 +468,32 @@ def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="
 if __name__ == "__main__":
     _DICT_ID = _dictionary_id()
 
-    from page_bodies import INDEX_BODY, PUBLICATIONS_BODY, TEACHING_BODY
+    from page_bodies import INDEX_BODY, PUBLICATIONS_BODY, THESES_BODY, TEACHING_BODY
+
+    theses = _theses()
 
     pages = [
         page("index.html", "meta.title.home",
              "ENLab | Laboratorium Material Energi dan Semikonduktor ITERA",
              "Kelompok riset material energi dan semikonduktor: sel surya perovskit, DSSC, superkapasitor, "
              "fotodetektor, dan fotokatalisis di Program Studi Teknik Material, Institut Teknologi Sumatera.",
-             INDEX_BODY, active="home", extra_head=JSONLD),
+             INDEX_BODY.replace(
+                 "__LATEST__",
+                 theses_fallback([x for x in theses
+                                  if x["y"] == max(t["y"] for t in theses)], _DICT_ID)),
+             active="home", extra_head=JSONLD),
         page("publications.html", "meta.title.pub",
              "Publikasi | ENLab ITERA",
              "Daftar lengkap 57 publikasi ilmiah Dr. Eka Nurfani dan tim ENLab ITERA pada jurnal "
              "internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.",
              PUBLICATIONS_BODY, active="pub"),
+        page("theses.html", "meta.title.theses",
+             "Tugas Akhir Mahasiswa | ENLab ITERA",
+             "Daftar judul tugas akhir mahasiswa bimbingan Dr. Eka Nurfani di ITERA sejak 2019, "
+             "dikelompokkan per tahun kelulusan: sel surya perovskit, DSSC, superkapasitor, "
+             "fotodetektor, dan fotokatalisis.",
+             THESES_BODY.replace("__FALLBACK__", theses_fallback(theses, _DICT_ID)),
+             active="theses"),
         page("teaching.html", "meta.title.teach",
              "Pengajaran & Materi Kuliah | ENLab ITERA",
              "Materi kuliah Dr. Eka Nurfani di ITERA yang dapat diunduh: Fisika Dasar (TPB), "

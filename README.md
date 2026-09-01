@@ -38,8 +38,10 @@ Lalu buka <http://localhost:8000>. Hentikan dengan `Ctrl+C`.
 ```
 WEBSITE LAB/
 ├── index.html              Beranda (hero, tentang, riset, tim, fasilitas,
-│                           publikasi terbaru, pendanaan, pengajaran, galeri, kontak)
+│                           publikasi terbaru, pendanaan, tugas akhir,
+│                           pengajaran, galeri, kontak)
 ├── publications.html       Daftar 57 publikasi + pencarian & filter
+├── theses.html             63 judul tugas akhir, dikelompokkan per tahun
 ├── teaching.html           17 mata kuliah + 25 berkas materi yang dapat diunduh
 ├── 404.html                Halaman kesalahan
 │
@@ -50,6 +52,7 @@ WEBSITE LAB/
 │   │   ├── data-publications.js   Daftar publikasi
 │   │   ├── data-courses.js        Daftar mata kuliah + materi
 │   │   ├── data-grants.js         Daftar hibah penelitian
+│   │   ├── data-theses.js         Daftar tugas akhir mahasiswa
 │   │   └── main.js         Logika: bahasa, tema, navigasi, perender data
 │   └── img/                logo, favicon, foto, gambar Open Graph
 │
@@ -165,6 +168,26 @@ tertimpa bila skrip dijalankan lagi.
 
 ---
 
+### 3.7 Menambah tugas akhir mahasiswa
+
+Buka `assets/js/data-theses.js`, sisipkan satu objek **di paling atas** daftar:
+
+```js
+  { "y": 2027, "n": "Nama Lengkap Mahasiswa",
+    "t": { "id": "Judul tugas akhir dalam Bahasa Indonesia",
+           "en": "Thesis title in English" } },
+```
+
+Keterangan: `y` tahun kelulusan, `n` nama mahasiswa, `t` judul dalam dua bahasa.
+Hanya ketiga hal itu yang tampil di situs.
+
+Pengelompokan per tahun, pilihan tahun pada filter, dan angka pada beranda
+terisi otomatis. NIM sengaja tidak dicantumkan. Setelah menyunting, jalankan
+`python3 tools/build_pages.py` agar teks cadangan pada `theses.html` dan
+beranda ikut diperbarui.
+
+---
+
 ## 4. Menerbitkan ke internet (gratis)
 
 ### Pilihan A — GitHub Pages (disarankan)
@@ -238,8 +261,8 @@ Lalu isi kolom *Custom domain* pada **Settings - Pages**.
 
 - [ ] **Foto kegiatan laboratorium** untuk menggantikan enam kotak galeri berwarna.
 - [ ] **Anggota tim** — tiga kartu (mahasiswa, kolaborator, alumni) masih berupa
-      keterangan umum. Nama mahasiswa sengaja tidak dicantumkan; tambahkan hanya
-      atas persetujuan yang bersangkutan.
+      keterangan umum. Nama mahasiswa yang sedang berjalan belum dicantumkan;
+      tambahkan hanya atas persetujuan yang bersangkutan.
 - [ ] **Nomor telepon** sengaja tidak dipublikasikan. Bila ingin ditampilkan,
       gunakan nomor kantor prodi, bukan nomor pribadi.
 - [ ] **Tautan DOI** — judul publikasi kini mengarah ke pencarian Google Scholar.
@@ -257,7 +280,10 @@ pengampu (bertanda `[EN]`, `[EKA]`, atau `[eka]` pada arsip asli). Buku teks dan
 materi pihak ketiga **tidak** disertakan karena tidak boleh disebarluaskan;
 mahasiswa dapat mengaksesnya melalui perpustakaan ITERA.
 
-Data nilai, daftar hadir, dan nama mahasiswa bimbingan tidak dimuat di situs ini.
+Data nilai, daftar hadir, dan berkas tugas akhir tidak dimuat di situs ini.
+Halaman **Tugas Akhir** memuat nama dan judul tugas akhir lulusan — keduanya
+bersifat publik sebagaimana tercantum pada repositori tugas akhir ITERA. NIM,
+nilai, dan berkas naskah tidak dicantumkan.
 
 ---
 
@@ -271,5 +297,6 @@ Konten situs disusun dari dokumen resmi di Google Drive:
 | Daftar peralatan dan bahan | `Research/LIST ALAT DAN BAHAN LAB EN (uptdate Sep 2025).xlsx` |
 | Instrumen rakitan sendiri | `Research/Design Spin Coater Home Made`, `Design Stasiun JV Simulator LED Home Made`, `Design Stasiun Light Soaking Home Made` |
 | Materi kuliah | `KULIAH/<mata kuliah>/` |
+| Judul tugas akhir dan nama lulusan | `Research/Bimbingan TA/<tahun> <nama>/` (halaman sampul naskah TA) |
 | Foto profil | `Foto Eka 3x4 BG_biru.png` |
 | Logo dan palet warna | `WEBSITE LAB/logo/logo-ENLab.png` |

@@ -217,6 +217,30 @@ ulang — `publish.sh` sudah melakukannya untuk Anda.
 
 ---
 
+### 3.6 Menambah tugas akhir mahasiswa
+
+Buka `assets/js/data-theses.js`. Sisipkan satu objek **di paling atas** daftar,
+tepat setelah `window.THESES = [`:
+
+```js
+  { "y": 2027, "n": "Nama Lengkap Mahasiswa",
+    "t": { "id": "Judul tugas akhir dalam Bahasa Indonesia",
+           "en": "Thesis title in English" } },
+```
+
+Keterangan:
+
+- `y` — tahun kelulusan; daftar dikelompokkan sendiri per tahun.
+- `n` — nama lengkap mahasiswa (NIM tidak dicantumkan di situs).
+- `t` — judul tugas akhir, versi Bahasa Indonesia dan Inggris.
+
+Hanya tahun, nama, dan judul yang ditampilkan di situs.
+
+Setelah menyunting, jalankan `python3 tools/build_pages.py` supaya teks cadangan
+pada `theses.html` dan cuplikan di beranda ikut diperbarui.
+
+---
+
 ## 4. Memeriksa sebelum menerbitkan
 
 **Melihat situs di laptop:**

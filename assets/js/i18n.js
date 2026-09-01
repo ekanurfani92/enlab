@@ -5,6 +5,7 @@ window.I18N = {
   id: {
     "meta.title.home": "ENLab | Laboratorium Material Energi dan Semikonduktor ITERA",
     "meta.title.pub": "Publikasi | ENLab ITERA",
+    "meta.title.theses": "Tugas Akhir Mahasiswa | ENLab ITERA",
     "meta.title.teach": "Pengajaran & Materi Kuliah | ENLab ITERA",
 
     "skip": "Lompat ke konten utama",
@@ -17,6 +18,7 @@ window.I18N = {
     "nav.team": "Tim",
     "nav.facilities": "Fasilitas",
     "nav.publications": "Publikasi",
+    "nav.theses": "Tugas Akhir",
     "nav.teaching": "Pengajaran",
     "nav.contact": "Kontak",
     "nav.menu": "Buka menu navigasi",
@@ -118,6 +120,20 @@ window.I18N = {
     "pub.profiles": "Profil peneliti",
     "pub.open": "Cari di Google Scholar",
 
+    "thesis.eyebrow": "Tugas Akhir",
+    "thesis.h2": "Topik tugas akhir mahasiswa, tahun demi tahun.",
+    "thesis.lead": "Setiap tahun laboratorium ini meluluskan mahasiswa dengan topik yang saling menyambung: dari lapisan tipis oksida ke sel surya, superkapasitor, dan fotokatalis.",
+    "thesis.all": "Lihat seluruh judul tugas akhir",
+    "thesis.page.h1": "Tugas Akhir Mahasiswa",
+    "thesis.page.lead": "Judul tugas akhir mahasiswa bimbingan Dr. Eka Nurfani, diurutkan dari tahun kelulusan terbaru. Daftar ini memperlihatkan bagaimana topik riset laboratorium berkembang dari tahun ke tahun.",
+    "thesis.search": "Cari judul, nama mahasiswa, atau kata kunci...",
+    "thesis.year.all": "Semua tahun",
+    "thesis.count": "menampilkan {n} dari {total} tugas akhir",
+    "thesis.group.n": "{n} tugas akhir",
+    "thesis.empty": "Tidak ada tugas akhir yang cocok dengan pencarian Anda.",
+    "thesis.reset": "Atur ulang filter",
+    "thesis.note": "Sebagian tugas akhir pada daftar ini dibimbing bersama dosen lain dan sebagian telah berlanjut menjadi artikel ilmiah pada halaman Publikasi.",
+
     "teach.eyebrow": "Pengajaran",
     "teach.h2": "Mata kuliah yang diampu.",
     "teach.lead": "Mata kuliah yang diampu di Program Studi Teknik Material dan Tahap Persiapan Bersama. Slide kuliah akan tersedia untuk diunduh secara bertahap.",
@@ -180,6 +196,7 @@ window.I18N = {
   en: {
     "meta.title.home": "ENLab | ENergy Materials and Semiconductor Laboratory, ITERA",
     "meta.title.pub": "Publications | ENLab ITERA",
+    "meta.title.theses": "Student Theses | ENLab ITERA",
     "meta.title.teach": "Teaching & Course Materials | ENLab ITERA",
 
     "skip": "Skip to main content",
@@ -192,6 +209,7 @@ window.I18N = {
     "nav.team": "Team",
     "nav.facilities": "Facilities",
     "nav.publications": "Publications",
+    "nav.theses": "Theses",
     "nav.teaching": "Teaching",
     "nav.contact": "Contact",
     "nav.menu": "Toggle navigation menu",
@@ -292,6 +310,20 @@ window.I18N = {
     "pub.reset": "Reset filters",
     "pub.profiles": "Researcher profiles",
     "pub.open": "Search on Google Scholar",
+
+    "thesis.eyebrow": "Student Theses",
+    "thesis.h2": "Undergraduate thesis topics, year by year.",
+    "thesis.lead": "Each year the laboratory graduates students on topics that build on one another: from metal-oxide thin films to solar cells, supercapacitors, and photocatalysts.",
+    "thesis.all": "View all thesis titles",
+    "thesis.page.h1": "Student Theses",
+    "thesis.page.lead": "Undergraduate thesis titles supervised by Dr. Eka Nurfani, ordered from the most recent graduation year. The list shows how the laboratory research topics have evolved over the years.",
+    "thesis.search": "Search title, student name, or keyword...",
+    "thesis.year.all": "All years",
+    "thesis.count": "showing {n} of {total} theses",
+    "thesis.group.n": "{n} theses",
+    "thesis.empty": "No theses match your search.",
+    "thesis.reset": "Reset filters",
+    "thesis.note": "Some theses in this list were co-supervised with other lecturers, and several have gone on to become the scientific articles listed on the Publications page.",
 
     "teach.eyebrow": "Teaching",
     "teach.h2": "Courses taught.",
