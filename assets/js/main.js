@@ -328,6 +328,11 @@
     title.appendChild(el('h3', null, c.t[lang]));
 
     var meta = el('div', 'course-meta');
+    if (c.kode) {
+      var kode = el('span', 'chip chip-code', c.kode);
+      kode.title = t('teach.kode');
+      meta.appendChild(kode);
+    }
     if (c.sks) meta.appendChild(el('span', 'chip chip-neutral', c.sks + ' ' + t('teach.sks')));
     meta.appendChild(el('span', 'chip chip-neutral', c.prodiName[lang]));
     if (c.m.length && c.pub) {
