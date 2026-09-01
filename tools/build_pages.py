@@ -225,6 +225,111 @@ JSONLD = """  <script type="application/ld+json">
 
 
 
+def _courses():
+    """Daftar mata kuliah dibaca dari sumber yang sama dengan yang dipakai situs."""
+    src = ("global.window={};require('./assets/js/data-courses.js');"
+           "console.log(JSON.stringify(window.COURSES));")
+    out = subprocess.run(["node", "-e", src], cwd=ROOT,
+                         capture_output=True, text=True, check=True)
+    return json.loads(out.stdout)
+
+
+def _q(path):
+    """Menyandikan tiap ruas jalur agar nama berkas bertanda baca tetap sah."""
+    from urllib.parse import quote
+    return "/".join(quote(seg) for seg in path.split("/"))
+
+
+def size_label(mb):
+    """Berkas kecil ditulis dalam KB; "0 MB" terbaca seperti berkas rusak."""
+    if not mb:
+        return ""
+    return f"{round(mb * 1024)} KB" if mb < 1 else f"{mb:.1f} MB"
+
+
+def course_body(c, dic):
+    """Isi halaman satu mata kuliah.
+
+    Teks Bahasa Indonesia ditulis langsung ke HTML sebagai cadangan bagi mesin
+    pencari dan pengunjung tanpa JavaScript; main.js menggambar ulang bagian
+    ini dari window.COURSES saat bahasa diganti.
+    """
+    esc = lambda x: _html.escape(x, quote=False)
+    chips = ['<span class="chip chip-code">%s</span>' % esc(c["kode"])] if c.get("kode") else []
+    if c.get("sks"):
+        chips.append('<span class="chip chip-neutral">%s %s</span>'
+                     % (esc(c["sks"]), esc(dic["teach.sks"])))
+    chips.append('<span class="chip chip-neutral">%s</span>' % esc(c["prodiName"]["id"]))
+    if c.get("pub") and c["m"]:
+        chips.append('<span class="chip">%d %s</span>' % (len(c["m"]), esc(dic["teach.materials"])))
+
+    if c.get("pub") and c["m"]:
+        items = "".join(
+            '\n            <li><a class="material" href="%s" target="_blank" rel="noopener">'
+            '<span class="pdf-ico">PDF</span><div><b>%s</b></div>'
+            '<small>%s</small></a></li>'
+            % (_q(m["f"]), esc(m["t"]), size_label(m["s"])) for m in c["m"])
+        materials = '<ul class="material-list">%s\n          </ul>' % items
+    else:
+        materials = '<p class="no-material">%s</p>' % esc(dic["teach.nomaterial"])
+
+    note = ('\n          <p class="course-note">%s</p>' % esc(c["note"]["id"])) if c.get("note") else ""
+
+    return """
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-i18n="nav.home">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <a href="teaching.html" data-i18n="nav.teaching">Pengajaran</a>
+          <span aria-hidden="true">/</span>
+          <span data-course-title>__TITLE__</span>
+        </nav>
+        <h1 data-course-title>__TITLE__</h1>
+        <div class="course-meta" id="course-chips" style="margin-top:14px">__CHIPS__</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:clamp(30px,4vw,48px)">
+      <div class="container">
+        <div id="course-page" data-course="__SLUG__" class="course-body course-body-page">
+          <p>__DESC__</p>__NOTE__
+          __MATERIALS__
+        </div>
+        <p style="margin-top:32px">
+          <a class="btn btn-ghost" href="teaching.html" data-i18n="teach.back">Kembali ke daftar mata kuliah</a>
+        </p>
+      </div>
+    </section>
+""".replace("__TITLE__", esc(c["t"]["id"])) \
+   .replace("__CHIPS__", "".join(chips)) \
+   .replace("__SLUG__", c["slug"]) \
+   .replace("__DESC__", esc(c["d"]["id"])) \
+   .replace("__NOTE__", note) \
+   .replace("__MATERIALS__", materials)
+
+
+def write_sitemap(courses):
+    urls = [(SITE_URL + "/", "1.0"),
+            (SITE_URL + "/publications.html", "0.8"),
+            (SITE_URL + "/teaching.html", "0.8")]
+    urls += [(SITE_URL + "/mk/" + c["slug"] + ".html", "0.7")
+             for c in courses if c.get("pub")]
+    body = "".join(
+        "  <url>\n"
+        "    <loc>%s</loc>\n"
+        "    <lastmod>%s</lastmod>\n"
+        "    <changefreq>monthly</changefreq>\n"
+        "    <priority>%s</priority>\n"
+        "  </url>\n" % (loc, TODAY, pr) for loc, pr in urls)
+    out = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+           + body + "</urlset>\n")
+    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(out)
+    return len(urls)
+
+
 def _dictionary_id():
     """Membaca kamus Bahasa Indonesia dari assets/js/i18n.js melalui Node."""
     src = ("global.window={};require('./assets/js/i18n.js');"
@@ -256,26 +361,55 @@ def fill_fallbacks(doc, dic):
     return _FILL.sub(rep, doc)
 
 
-def page(filename, lang_title_key, og_title, desc, body, active="", extra_head=""):
+_REL = re.compile(r'(\b(?:href|src)=")([^"]+)(")')
+
+
+def retarget(doc, prefix):
+    """Menaikkan jalur relatif satu tingkat untuk halaman di dalam subfolder.
+
+    Header, footer, dan <head> ditulis untuk halaman di akar situs. Halaman
+    mata kuliah berada di mk/, jadi setiap jalur relatif diberi awalan "../".
+    """
+    if not prefix:
+        return doc
+
+    def rep(m):
+        pre, url, post = m.groups()
+        if url.startswith(("http://", "https://", "//", "#", "mailto:", "data:", "/", prefix)):
+            return m.group(0)
+        return pre + prefix + url + post
+
+    return _REL.sub(rep, doc)
+
+
+def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="",
+         html_attr="", robots=None):
     canon = SITE_URL + "/" + ("" if filename == "index.html" else filename)
     head = (HEAD
             .replace("__CANON__", canon)
             .replace("__OGTITLE__", og_title)
             .replace("__DESC__", desc)
             .replace("__SITE__", SITE_URL))
+    if robots:
+        head = head.replace('<meta name="robots" content="index, follow">',
+                            '<meta name="robots" content="%s">' % robots)
     foot = FOOTER.replace("__YEAR__", str(datetime.date.today().year)).replace("__TODAY__", TODAY)
+
+    prefix = "../" * filename.count("/")
+    head, foot, body = (retarget(x, prefix) for x in (head, foot, body))
 
     html = (
         "<!DOCTYPE html>\n"
-        '<html lang="id">\n'
+        '<html lang="id"' + html_attr + ">\n"
         "<head>\n"
         + head
-        + '  <title data-i18n="' + lang_title_key + '">' + og_title + "</title>\n"
+        + ('  <title data-i18n="' + lang_title_key + '">' if lang_title_key else "  <title>")
+        + og_title + "</title>\n"
         + '  <meta name="description" content="' + desc + '">\n'
-        + extra_head.replace("__SITE__", SITE_URL)
+        + retarget(extra_head.replace("__SITE__", SITE_URL), prefix)
         + "</head>\n"
         "<body>\n"
-        + header(active)
+        + retarget(header(active), prefix)
         + "\n"
         + '  <main id="main">\n'
         + body
@@ -286,6 +420,7 @@ def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="
     html = fill_fallbacks(html, _DICT_ID)
 
     path = os.path.join(ROOT, filename)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
     return path, len(html)
@@ -313,5 +448,23 @@ if __name__ == "__main__":
              "Material Keramik, Material Sensor, Fenomena Transpor Material, dan Fisika Dasar II.",
              TEACHING_BODY, active="teach"),
     ]
+    # Satu halaman per mata kuliah, agar tiap kelas punya tautan sendiri.
+    courses = _courses()
+    for c in courses:
+        judul = c["t"]["id"]
+        ringkas = c["d"]["id"]
+        if len(ringkas) > 155:
+            ringkas = ringkas[:152].rsplit(" ", 1)[0] + "..."
+        pages.append(page(
+            "mk/" + c["slug"] + ".html", "",
+            _html.escape(judul, quote=True) + " | ENLab ITERA",
+            _html.escape(ringkas, quote=True),
+            course_body(c, _DICT_ID), active="teach",
+            html_attr=' data-base="../"',
+            robots=None if c.get("pub") else "noindex, follow"))
+
+    n_url = write_sitemap(courses)
+
     for p, n in pages:
-        print("  " + os.path.basename(p).ljust(22) + str(n).rjust(7) + " bita")
+        print("  " + os.path.relpath(p, ROOT).ljust(38) + str(n).rjust(7) + " bita")
+    print("  " + "sitemap.xml".ljust(38) + str(n_url).rjust(7) + " url")

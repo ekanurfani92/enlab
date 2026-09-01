@@ -272,6 +272,13 @@ p { margin: 0; text-wrap: pretty; }
   border: 1px solid color-mix(in srgb, var(--brand) 18%, transparent);
 }
 .chip-neutral { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
+.course-perma {
+  display: inline-block; margin-top: 16px;
+  font-size: .86rem; font-weight: 600; color: var(--brand);
+  text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+}
+.course-perma:hover { border-bottom-color: var(--brand); }
+
 .chip-code {
   font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   font-size: .69rem; font-variant-numeric: tabular-nums;
@@ -478,6 +485,9 @@ p { margin: 0; text-wrap: pretty; }
 .course[open] .course-caret { transform: rotate(180deg); color: var(--brand); border-color: var(--brand); }
 .course-body { padding: 0 clamp(20px, 2.4vw, 28px) 24px; border-top: 1px solid var(--line); padding-top: 20px; }
 .course-body > p { color: var(--muted); font-size: .93rem; margin-bottom: 18px; }
+/* Halaman khusus satu mata kuliah: tanpa garis pemisah dan tanpa lekuk kartu. */
+.course-body-page { padding: 0; border-top: 0; }
+.course-body-page > p { font-size: 1rem; }
 .course-note {
   border-left: 3px solid var(--accent); padding: 10px 14px;
   background: var(--accent-soft); border-radius: 0 var(--r-xs) var(--r-xs) 0;

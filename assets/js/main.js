@@ -9,6 +9,10 @@
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* mode privat */ } }
   };
 
+  /* Halaman mata kuliah berada di mk/, satu tingkat lebih dalam. Awalan ini
+     dipasang di <html data-base="../"> oleh tools/build_pages.py. */
+  var BASE = document.documentElement.getAttribute('data-base') || '';
+
   /* ---------- Bahasa ---------- */
   var lang = (function () {
     var q = new URLSearchParams(location.search).get('lang');
@@ -327,18 +331,7 @@
     var title = el('div', 'course-title');
     title.appendChild(el('h3', null, c.t[lang]));
 
-    var meta = el('div', 'course-meta');
-    if (c.kode) {
-      var kode = el('span', 'chip chip-code', c.kode);
-      kode.title = t('teach.kode');
-      meta.appendChild(kode);
-    }
-    if (c.sks) meta.appendChild(el('span', 'chip chip-neutral', c.sks + ' ' + t('teach.sks')));
-    meta.appendChild(el('span', 'chip chip-neutral', c.prodiName[lang]));
-    if (c.m.length && c.pub) {
-      meta.appendChild(el('span', 'chip', c.m.length + ' ' + t('teach.materials')));
-    }
-    title.appendChild(meta);
+    title.appendChild(courseChips(c));
     sum.appendChild(title);
 
     var caret = el('span', 'course-caret');
@@ -350,8 +343,47 @@
     d.appendChild(sum);
 
     var body = el('div', 'course-body');
-    body.appendChild(el('p', null, c.d[lang]));
-    if (c.note) body.appendChild(el('p', 'course-note', c.note[lang]));
+    courseDetail(c, body);
+
+    var perma = el('a', 'course-perma', t('teach.perma'));
+    perma.href = coursePageHref(c);
+    body.appendChild(perma);
+
+    d.appendChild(body);
+    return d;
+  }
+
+  /* Cip identitas mata kuliah: kode, sks, prodi, jumlah berkas. */
+  function courseChips(c) {
+    var meta = el('div', 'course-meta');
+    if (c.kode) {
+      var kode = el('span', 'chip chip-code', c.kode);
+      kode.title = t('teach.kode');
+      meta.appendChild(kode);
+    }
+    if (c.sks) meta.appendChild(el('span', 'chip chip-neutral', c.sks + ' ' + t('teach.sks')));
+    meta.appendChild(el('span', 'chip chip-neutral', c.prodiName[lang]));
+    if (c.m.length && c.pub) {
+      meta.appendChild(el('span', 'chip', c.m.length + ' ' + t('teach.materials')));
+    }
+    return meta;
+  }
+
+  /* Berkas kecil ditulis dalam KB; "0 MB" terbaca seperti berkas rusak. */
+  function sizeLabel(mb) {
+    if (!mb) return '';
+    return mb < 1 ? Math.round(mb * 1024) + ' KB' : mb.toFixed(1) + ' MB';
+  }
+
+  function coursePageHref(c) {
+    return BASE + 'mk/' + c.slug + '.html';
+  }
+
+  /* Deskripsi, catatan, dan daftar berkas - sama pada kartu maupun
+     halaman khusus mata kuliah. */
+  function courseDetail(c, host) {
+    host.appendChild(el('p', null, c.d[lang]));
+    if (c.note) host.appendChild(el('p', 'course-note', c.note[lang]));
 
     if (c.m.length && c.pub) {
       var ul = el('ul', 'material-list');
@@ -360,7 +392,7 @@
         var a = el('a', 'material');
         // Nama berkas boleh memuat spasi atau huruf beraksen;
         // tiap ruas jalur disandikan agar tautannya tetap sah.
-        a.href = m.f.split('/').map(encodeURIComponent).join('/');
+        a.href = BASE + m.f.split('/').map(encodeURIComponent).join('/');
         a.target = '_blank';
         a.rel = 'noopener';
         a.setAttribute('aria-label', t('teach.download') + ': ' + m.t);
@@ -368,17 +400,14 @@
         var wrap = el('div');
         wrap.appendChild(el('b', null, m.t));
         a.appendChild(wrap);
-        a.appendChild(el('small', null, m.s + ' MB'));
+        if (sizeLabel(m.s)) a.appendChild(el('small', null, sizeLabel(m.s)));
         li.appendChild(a);
         ul.appendChild(li);
       });
-      body.appendChild(ul);
+      host.appendChild(ul);
     } else {
-      body.appendChild(el('p', 'no-material', t('teach.nomaterial')));
+      host.appendChild(el('p', 'no-material', t('teach.nomaterial')));
     }
-
-    d.appendChild(body);
-    return d;
   }
 
   function initCourses() {
@@ -411,6 +440,33 @@
     render();
   }
 
+  /* ---------- Perender: halaman satu mata kuliah ---------- */
+  function initCoursePage() {
+    var host = document.getElementById('course-page');
+    if (!host || !window.COURSES) return;
+    var slug = host.getAttribute('data-course');
+    var c = null;
+    window.COURSES.forEach(function (x) { if (x.slug === slug) c = x; });
+    if (!c) return;
+
+    function render() {
+      document.querySelectorAll('[data-course-title]').forEach(function (n) {
+        n.textContent = c.t[lang];
+      });
+      document.title = c.t[lang] + ' | ENLab ITERA';
+
+      var chips = document.getElementById('course-chips');
+      if (chips) chips.replaceWith(Object.assign(courseChips(c), { id: 'course-chips' }));
+
+      host.textContent = '';
+      courseDetail(c, host);
+      initReveal();
+    }
+
+    document.addEventListener('langchange', render);
+    render();
+  }
+
   /* ---------- Bootstrap ---------- */
   function init() {
     applyLang();
@@ -420,6 +476,7 @@
     initLatestPublications();
     initGrants();
     initCourses();
+    initCoursePage();
 
     document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-lang-btn')); });

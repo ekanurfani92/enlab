@@ -8,12 +8,15 @@ Memeriksa: kelengkapan terjemahan, tautan dan aset lokal, keberadaan berkas
 materi kuliah, kesahihan JSON-LD & manifest, struktur HTML, dan aksesibilitas dasar.
 """
 
-import os, re, json, subprocess, sys
+import os, re, json, glob, subprocess, sys
 from html.parser import HTMLParser
+from urllib.parse import unquote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
-PAGES = ["index.html", "publications.html", "teaching.html", "404.html"]
+# Halaman mata kuliah di mk/ ikut diperiksa; jumlahnya mengikuti data-courses.js.
+PAGES = (["index.html", "publications.html", "teaching.html", "404.html"]
+         + sorted(glob.glob("mk/*.html")))
 problems = []
 
 
@@ -66,8 +69,14 @@ for p in PAGES:
     for m in re.findall(r'(?:href|src)="([^"]+)"', t):
         if m.startswith(("http", "mailto:", "#", "data:", "javascript:")):
             continue
-        tgt = m.lstrip("/").split("#")[0].split("?")[0]
-        if tgt and not os.path.exists(tgt):
+        raw = unquote(m.split("#")[0].split("?")[0])
+        if not raw:
+            continue
+        # Jalur relatif dihitung dari letak halamannya, bukan dari akar repo,
+        # supaya "../assets/..." pada halaman di mk/ ikut terperiksa benar.
+        tgt = (raw.lstrip("/") if m.startswith("/")
+               else os.path.normpath(os.path.join(os.path.dirname(p), raw)))
+        if not os.path.exists(tgt):
             broken.append(f"{p} -> {m}")
 ok("seluruh tautan lokal hidup") if not broken else bad("tautan rusak", "; ".join(broken[:3]))
 

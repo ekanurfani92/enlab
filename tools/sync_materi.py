@@ -93,7 +93,7 @@ def main():
         baru = []
         for f in berkas:
             path = f"materi/{c['slug']}/{f}"
-            mb = round(os.path.getsize(os.path.join(folder, f)) / 1048576, 1)
+            mb = round(os.path.getsize(os.path.join(folder, f)) / 1048576, 2)
             baru.append({"t": judul_lama.get(path) or judul_dari_nama(f), "f": path, "s": mb})
             if path not in judul_lama:
                 tambah.append(path)
