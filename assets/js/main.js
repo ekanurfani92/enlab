@@ -410,28 +410,33 @@
     }
   }
 
+  /* Mata kuliah yang tidak lagi diampu ditandai "aktif": false pada
+     data-courses.js; datanya disimpan, tetapi tidak ditampilkan. */
+  function aktif(c) { return c.aktif !== false; }
+
   function initCourses() {
     var mt = document.getElementById('courses-mt');
     var other = document.getElementById('courses-other');
     if (!mt || !window.COURSES) return;
+    var daftar = window.COURSES.filter(aktif);
 
     function render() {
       mt.textContent = '';
       if (other) other.textContent = '';
-      window.COURSES.forEach(function (c) {
+      daftar.forEach(function (c) {
         var host = c.prodi === 'MT' ? mt : other;
         if (host) host.appendChild(courseNode(c));
       });
 
       var countEl = document.getElementById('course-count');
       if (countEl) {
-        var files = window.COURSES.reduce(function (n, c) {
+        var files = daftar.reduce(function (n, c) {
           return n + (c.pub ? c.m.length : 0);
         }, 0);
         countEl.textContent = files
-          ? t('teach.count').replace('{n}', String(window.COURSES.length))
+          ? t('teach.count').replace('{n}', String(daftar.length))
                             .replace('{m}', String(files))
-          : t('teach.count.soon').replace('{n}', String(window.COURSES.length));
+          : t('teach.count.soon').replace('{n}', String(daftar.length));
       }
       initReveal();
     }

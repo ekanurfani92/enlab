@@ -13,6 +13,7 @@ teaching.html) yang tetap bisa disunting langsung bila diperlukan.
 
 import os
 import re
+import glob
 import json
 import html as _html
 import subprocess
@@ -444,12 +445,20 @@ if __name__ == "__main__":
              PUBLICATIONS_BODY, active="pub"),
         page("teaching.html", "meta.title.teach",
              "Pengajaran & Materi Kuliah | ENLab ITERA",
-             "Materi kuliah Teknik Material ITERA yang dapat diunduh: Karakterisasi Material, "
-             "Material Keramik, Material Sensor, Fenomena Transpor Material, dan Fisika Dasar II.",
+             "Materi kuliah Dr. Eka Nurfani di ITERA yang dapat diunduh: Fisika Dasar (TPB), "
+             "Fisika Dasar II, Material Elektronik Optik Magnetik, Karakterisasi Material, "
+             "Semikonduktor, dan Material Nano.",
              TEACHING_BODY, active="teach"),
     ]
     # Satu halaman per mata kuliah, agar tiap kelas punya tautan sendiri.
-    courses = _courses()
+    # Mata kuliah yang tidak lagi diampu ("aktif": false) dilewati, dan
+    # halaman lamanya dihapus agar tidak tertinggal di situs.
+    courses = [c for c in _courses() if c.get("aktif") is not False]
+    aktif_slug = {c["slug"] for c in courses}
+    for f in sorted(glob.glob(os.path.join(ROOT, "mk", "*.html"))):
+        if os.path.basename(f)[:-5] not in aktif_slug:
+            os.remove(f)
+            print("  " + os.path.relpath(f, ROOT).ljust(38) + "dihapus".rjust(7))
     for c in courses:
         judul = c["t"]["id"]
         ringkas = c["d"]["id"]
