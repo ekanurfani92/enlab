@@ -120,13 +120,15 @@ bahasa** (`id` dan `en`) — `tools/verify.py` akan menolak bila salah satu hila
 
 ### 3.4 Logo dan warna
 
-Logo asli tersimpan di `logo/logo-ENLab.png`. Tiga berkas turunan dibuat darinya
-dan dipakai situs:
+Logo asli tersimpan di `logo/logo-ENLab.png`, dengan versi vektornya di
+`logo/logo-ENLab.svg` (lengkap sampai garis hijau, tanpa tagline; tersedia juga
+sebagai `.pdf` dan PNG 3000 px untuk slide dan cetak). Berkas turunan yang
+dipakai situs:
 
 | Berkas | Dipakai untuk |
 |---|---|
 | `assets/img/logo-emblem.png` | Lambang di header dan footer (latar transparan) |
-| `assets/img/logo-enlab.png` | Logo penuh pada hero dan gambar Open Graph |
+| `assets/img/logo-enlab.svg` | Logo penuh (vektor) pada hero |
 | `assets/img/favicon.png` | Ikon tab peramban |
 
 Palet situs diambil langsung dari logo: navy `#042c68`, biru `#0a4f96`,

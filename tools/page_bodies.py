@@ -32,9 +32,9 @@ INDEX_BODY = """
 
         <div class="hero-visual reveal d1">
           <div class="logo-plate">
-            <img src="assets/img/logo-enlab.png"
+            <img src="assets/img/logo-enlab.svg"
                  alt="Logo ENLab - ENergy Materials and Semiconductor Laboratory"
-                 width="380" height="451" fetchpriority="high">
+                 width="977" height="1032" fetchpriority="high">
           </div>
         </div>
       </div>
