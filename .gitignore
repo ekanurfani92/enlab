@@ -14,6 +14,9 @@ materi/*
 !materi/k3/
 !materi/material-keramik/
 !materi/material-sensor/
+!materi/karakterisasi-material/
+!materi/karakterisasi-material-lanjut/
+!materi/material-konversi-energi/
 
 __pycache__/
 *.pyc
