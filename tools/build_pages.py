@@ -30,8 +30,8 @@ _DICT_ID = None  # diisi saat dijalankan
 
 HEAD = """  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a4f96" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#050e1c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0d6e6e" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#051614" media="(prefers-color-scheme: dark)">
   <meta name="author" content="Dr. Eka Nurfani, S.Si., M.Si.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="__CANON__">

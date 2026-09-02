@@ -8,11 +8,11 @@
   <!-- Halaman ini sengaja mandiri: ia dapat disajikan pada kedalaman URL mana pun,
        sehingga jalur relatif ke CSS atau gambar tidak dapat diandalkan. -->
   <style>
-    :root { color-scheme: light; --bg:#f7f9fc; --card:#fff; --text:#142744;
-            --strong:#06152b; --muted:#586984; --brand:#0a4f96; --line:#dae2ef; }
+    :root { color-scheme: light; --bg:#f5faf9; --card:#fff; --text:#123230;
+            --strong:#04211f; --muted:#4d716e; --brand:#0d6e6e; --brand-ink:#fff; --line:#d3e5e2; }
     @media (prefers-color-scheme: dark) {
-      :root { color-scheme: dark; --bg:#050e1c; --card:#0b1828; --text:#dbe6f5;
-              --strong:#fff; --muted:#8ea3c1; --brand:#5da4ea; --line:#1d3049; }
+      :root { color-scheme: dark; --bg:#051614; --card:#0a2320; --text:#d8ece8;
+              --strong:#fff; --muted:#8bb0aa; --brand:#4fc3bd; --brand-ink:#03211f; --line:#1c3a36; }
     }
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px;
@@ -25,7 +25,7 @@
     h1 { font-size:clamp(1.6rem,4vw,2.3rem); margin:14px 0 12px; color:var(--strong);
          letter-spacing:-0.03em; line-height:1.2; }
     p { color:var(--muted); margin:0 0 26px; }
-    a.btn { display:inline-block; background:var(--brand); color:#fff; font-weight:700;
+    a.btn { display:inline-block; background:var(--brand); color:var(--brand-ink); font-weight:700;
             padding:13px 26px; border-radius:999px; text-decoration:none; }
     a.btn:hover { opacity:.9; }
   </style>

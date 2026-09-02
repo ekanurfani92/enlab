@@ -7,28 +7,28 @@
 /* ---------- 1. Tokens ---------- */
 :root {
   color-scheme: light;
-  --bg:          #f7f9fc;
-  --bg-sunk:     #eef2f9;
+  --bg:          #f5faf9;
+  --bg-sunk:     #e9f3f1;
   --surface:     #ffffff;
-  --surface-2:   #f0f4fa;
-  --surface-3:   #e5edf7;
-  --text:        #142744;
-  --text-strong: #06152b;
-  --muted:       #586984;
-  --line:        #dae2ef;
-  --line-strong: #c2cee2;
+  --surface-2:   #eef6f5;
+  --surface-3:   #e0eeec;
+  --text:        #123230;
+  --text-strong: #04211f;
+  --muted:       #4d716e;
+  --line:        #d3e5e2;
+  --line-strong: #b8d3cf;
 
-  --brand:       #0a4f96;
-  --brand-2:     #1268bb;
-  --brand-soft:  #e7f0fa;
+  --brand:       #0d6e6e;
+  --brand-2:     #128f8e;
+  --brand-soft:  #e0f2f1;
   --brand-ink:   #ffffff;
-  --accent:      #248430;
-  --accent-soft: #e4f2e6;
+  --accent:      #1f7a4d;
+  --accent-soft: #e1f2e9;
   --accent-ink:  #ffffff;
-  --amber:       #f7a909;
+  --amber:       #ef9f00;
 
-  --deep:        #042c68;
-  --deep-2:      #063a86;
+  --deep:        #053f3e;
+  --deep-2:      #095452;
 
   --shadow-sm: 0 1px 2px rgba(4, 26, 60, .06), 0 2px 6px rgba(4, 26, 60, .05);
   --shadow-md: 0 8px 20px rgba(4, 26, 60, .09), 0 2px 6px rgba(4, 26, 60, .05);
@@ -47,28 +47,28 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg:          #050e1c;
-    --bg-sunk:     #030913;
-    --surface:     #0b1828;
-    --surface-2:   #101f34;
-    --surface-3:   #16283f;
-    --text:        #dbe6f5;
+    --bg:          #051614;
+    --bg-sunk:     #030e0d;
+    --surface:     #0a2320;
+    --surface-2:   #0f2d29;
+    --surface-3:   #153a35;
+    --text:        #d8ece8;
     --text-strong: #ffffff;
-    --muted:       #8ea3c1;
-    --line:        #1d3049;
-    --line-strong: #2c4565;
+    --muted:       #8bb0aa;
+    --line:        #1c3a36;
+    --line-strong: #2b524c;
 
-    --brand:       #5da4ea;
-    --brand-2:     #82bcf7;
-    --brand-soft:  #0f2540;
-    --brand-ink:   #04182e;
-    --accent:      #4fbe5c;
-    --accent-soft: #0e2a16;
-    --accent-ink:  #04240b;
+    --brand:       #4fc3bd;
+    --brand-2:     #79dbd5;
+    --brand-soft:  #0d2f2c;
+    --brand-ink:   #03211f;
+    --accent:      #4fbe7f;
+    --accent-soft: #0d2a1a;
+    --accent-ink:  #042410;
     --amber:       #f9b83a;
 
-    --deep:        #041f45;
-    --deep-2:      #062c60;
+    --deep:        #04302e;
+    --deep-2:      #06423f;
 
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .45);
     --shadow-md: 0 10px 24px rgba(0, 0, 0, .5);
@@ -79,28 +79,28 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg:          #050e1c;
-  --bg-sunk:     #030913;
-  --surface:     #0b1828;
-  --surface-2:   #101f34;
-  --surface-3:   #16283f;
-  --text:        #dbe6f5;
+  --bg:          #051614;
+  --bg-sunk:     #030e0d;
+  --surface:     #0a2320;
+  --surface-2:   #0f2d29;
+  --surface-3:   #153a35;
+  --text:        #d8ece8;
   --text-strong: #ffffff;
-  --muted:       #8ea3c1;
-  --line:        #1d3049;
-  --line-strong: #2c4565;
+  --muted:       #8bb0aa;
+  --line:        #1c3a36;
+  --line-strong: #2b524c;
 
-  --brand:       #5da4ea;
-  --brand-2:     #82bcf7;
-  --brand-soft:  #0f2540;
-  --brand-ink:   #04182e;
-  --accent:      #4fbe5c;
-  --accent-soft: #0e2a16;
-  --accent-ink:  #04240b;
+  --brand:       #4fc3bd;
+  --brand-2:     #79dbd5;
+  --brand-soft:  #0d2f2c;
+  --brand-ink:   #03211f;
+  --accent:      #4fbe7f;
+  --accent-soft: #0d2a1a;
+  --accent-ink:  #042410;
   --amber:       #f9b83a;
 
-  --deep:        #041f45;
-  --deep-2:      #062c60;
+  --deep:        #04302e;
+  --deep-2:      #06423f;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, .45);
   --shadow-md: 0 10px 24px rgba(0, 0, 0, .5);
