@@ -581,6 +581,48 @@
     render();
   }
 
+  /* ---------- Perender: narasumber ---------- */
+  function talkNode(x) {
+    var li = el('li', 'pub');
+    li.appendChild(el('div', 'pub-year', x.d.slice(0, 4)));
+
+    var body = el('div');
+    body.appendChild(el('h3', null, x.t[lang]));
+    body.appendChild(el('p', 'pub-venue', x.e[lang] + ' - ' + x.dt[lang]));
+    li.appendChild(body);
+
+    var a = el('a', 'material');
+    a.href = BASE + x.f.split('/').map(encodeURIComponent).join('/');
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.setAttribute('aria-label', t('talk.download') + ': ' + x.t[lang]);
+    a.appendChild(el('span', 'pdf-ico', 'PDF'));
+    var wrap = el('div');
+    wrap.appendChild(el('b', null, t('talk.download')));
+    a.appendChild(wrap);
+    if (sizeLabel(x.s)) a.appendChild(el('small', null, sizeLabel(x.s)));
+    li.appendChild(a);
+    return li;
+  }
+
+  function initTalks() {
+    var host = document.getElementById('talk-list');
+    if (!host || !window.TALKS) return;
+
+    function render() {
+      host.textContent = '';
+      if (!window.TALKS.length) {
+        host.appendChild(el('p', 'no-material', t('talk.empty')));
+      } else {
+        window.TALKS.forEach(function (x) { host.appendChild(talkNode(x)); });
+      }
+      initReveal();
+    }
+
+    document.addEventListener('langchange', render);
+    render();
+  }
+
   /* ---------- Perender: halaman satu mata kuliah ---------- */
   function initCoursePage() {
     var host = document.getElementById('course-page');
@@ -620,6 +662,7 @@
     initLatestTheses();
     initCourses();
     initCoursePage();
+    initTalks();
 
     document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-lang-btn')); });

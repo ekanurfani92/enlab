@@ -685,6 +685,14 @@ p { margin: 0; text-wrap: pretty; }
 }
 
 /* ---------- 14. Responsive ---------- */
+/* Sejak menu Narasumber ditambahkan, navigasi berisi sembilan tautan.
+   Pada layar sedang jaraknya dirapatkan lebih dulu, agar anak judul merek
+   tidak perlu disembunyikan sedini mungkin. */
+@media (max-width: 1560px) {
+  .site-nav { gap: clamp(0px, .5vw, 10px); }
+  .site-nav a { font-size: .88rem; padding: 8px 8px; }
+}
+
 @media (max-width: 1320px) {
   .nav-wrap { gap: 10px; }
   .brand-text span { display: none; }

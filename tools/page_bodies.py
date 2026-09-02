@@ -445,6 +445,26 @@ THESES_BODY = """
     </section>
 """
 
+TALKS_BODY = """
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-i18n="nav.home">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span data-i18n="nav.talks">Narasumber</span>
+        </nav>
+        <h1 data-i18n="talk.page.h1">Narasumber &amp; Presentasi Undangan</h1>
+        <p data-i18n="talk.page.lead">Materi presentasi Dr. Eka Nurfani sebagai narasumber pada webinar, seminar, dan sesi berbagi ilmiah.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:clamp(30px,4vw,48px)">
+      <div class="container">
+        <ul class="pub-list" id="talk-list">__FALLBACK__</ul>
+      </div>
+    </section>
+"""
+
 TEACHING_BODY = """
     <section class="page-head">
       <div class="container">

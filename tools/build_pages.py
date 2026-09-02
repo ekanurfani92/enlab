@@ -95,6 +95,7 @@ def header(active=""):
         <a href="publications.html\"""" + cur("pub") + """ data-i18n="nav.publications">Publikasi</a>
         <a href="theses.html\"""" + cur("theses") + """ data-i18n="nav.theses">Tugas Akhir</a>
         <a href="teaching.html\"""" + cur("teach") + """ data-i18n="nav.teaching">Pengajaran</a>
+        <a href="talks.html\"""" + cur("talks") + """ data-i18n="nav.talks">Narasumber</a>
         <a href="index.html#contact" data-i18n="nav.contact">Kontak</a>
       </nav>
 
@@ -145,6 +146,7 @@ FOOTER = """  <footer class="site-footer">
             <li><a href="publications.html" data-i18n="nav.publications">Publikasi</a></li>
             <li><a href="theses.html" data-i18n="nav.theses">Tugas Akhir</a></li>
             <li><a href="teaching.html" data-i18n="nav.teaching">Pengajaran</a></li>
+            <li><a href="talks.html" data-i18n="nav.talks">Narasumber</a></li>
             <li><a href="https://scholar.google.com/citations?user=5Sz8OyAAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
             <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57190941043" target="_blank" rel="noopener">Scopus</a></li>
             <li><a href="https://sinta.kemdikbud.go.id/authors/profile/6659724" target="_blank" rel="noopener">SINTA</a></li>
@@ -171,6 +173,7 @@ FOOTER = """  <footer class="site-footer">
   <script src="assets/js/data-courses.js"></script>
   <script src="assets/js/data-grants.js"></script>
   <script src="assets/js/data-theses.js"></script>
+  <script src="assets/js/data-talks.js"></script>
   <script src="assets/js/main.js"></script>
 """
 
@@ -272,6 +275,35 @@ def theses_fallback(theses, dic):
     return "".join(out) + "\n      "
 
 
+def _talks():
+    """Daftar undangan narasumber dibaca dari sumber yang sama dengan situs."""
+    src = ("global.window={};require('./assets/js/data-talks.js');"
+           "console.log(JSON.stringify(window.TALKS));")
+    out = subprocess.run(["node", "-e", src], cwd=ROOT,
+                         capture_output=True, text=True, check=True)
+    return json.loads(out.stdout)
+
+
+def talks_fallback(talks, dic):
+    """Cadangan HTML statis daftar narasumber, sejalan dengan theses_fallback."""
+    esc = lambda x: _html.escape(x, quote=False)
+    if not talks:
+        return '\n        <p class="no-material">%s</p>\n      ' % esc(dic["talk.empty"])
+    out = []
+    for x in talks:
+        out.append(
+            '\n          <li class="pub">'
+            '\n            <div class="pub-year">%s</div>'
+            '\n            <div><h3>%s</h3><p class="pub-venue">%s</p></div>'
+            '\n            <a class="material" href="%s" target="_blank" rel="noopener">'
+            '<span class="pdf-ico">PDF</span><div><b>%s</b></div><small>%s</small></a>'
+            '\n          </li>'
+            % (esc(x["d"][:4]), esc(x["t"]["id"]),
+               esc(x["e"]["id"] + " - " + x["dt"]["id"]),
+               _q(x["f"]), esc(dic["talk.download"]), size_label(x["s"])))
+    return "".join(out) + "\n        "
+
+
 def _q(path):
     """Menyandikan tiap ruas jalur agar nama berkas bertanda baca tetap sah."""
     from urllib.parse import quote
@@ -353,7 +385,8 @@ def write_sitemap(courses):
     urls = [(SITE_URL + "/", "1.0"),
             (SITE_URL + "/publications.html", "0.8"),
             (SITE_URL + "/theses.html", "0.8"),
-            (SITE_URL + "/teaching.html", "0.8")]
+            (SITE_URL + "/teaching.html", "0.8"),
+            (SITE_URL + "/talks.html", "0.7")]
     urls += [(SITE_URL + "/mk/" + c["slug"] + ".html", "0.7")
              for c in courses if c.get("pub")]
     body = "".join(
@@ -470,7 +503,8 @@ def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="
 if __name__ == "__main__":
     _DICT_ID = _dictionary_id()
 
-    from page_bodies import INDEX_BODY, PUBLICATIONS_BODY, THESES_BODY, TEACHING_BODY
+    from page_bodies import (INDEX_BODY, PUBLICATIONS_BODY, THESES_BODY,
+                             TEACHING_BODY, TALKS_BODY)
 
     theses = _theses()
 
@@ -502,6 +536,12 @@ if __name__ == "__main__":
              "Fisika Dasar II, Material Elektronik Optik Magnetik, Karakterisasi Material, "
              "Semikonduktor, dan Material Nano.",
              TEACHING_BODY, active="teach"),
+        page("talks.html", "meta.title.talks",
+             "Narasumber | ENLab ITERA",
+             "Materi presentasi Dr. Eka Nurfani sebagai narasumber pada webinar, seminar, "
+             "dan sesi berbagi ilmiah, lengkap dengan slide yang dapat diunduh.",
+             TALKS_BODY.replace("__FALLBACK__", talks_fallback(_talks(), _DICT_ID)),
+             active="talks"),
     ]
     # Satu halaman per mata kuliah, agar tiap kelas punya tautan sendiri.
     # Mata kuliah yang tidak lagi diampu ("aktif": false) tetap dibuatkan

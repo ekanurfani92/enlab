@@ -80,6 +80,45 @@ def urutan(nama):
     return (int(m.group(1)) if m else 999, nama.lower())
 
 
+def sync_narasumber():
+    """Menyelaraskan ukuran berkas pada data-talks.js dengan berkas sebenarnya.
+
+    Judul dan nama acara ditulis tangan karena tidak dapat diturunkan dari nama
+    berkas; hanya ukuran yang diperbarui otomatis, ditambah peringatan bila ada
+    berkas yang tercantum tetapi hilang, atau tergeletak tetapi belum didaftarkan.
+    """
+    data = "assets/js/data-talks.js"
+    if not os.path.exists(data):
+        return
+    src = f"global.window={{}};require('./{data}');console.log(JSON.stringify(window.TALKS));"
+    talks = json.loads(subprocess.run(["node", "-e", src],
+                                      capture_output=True, text=True, check=True).stdout)
+
+    teks = open(data, encoding="utf-8").read()
+    diperbarui, hilang = 0, []
+    for x in talks:
+        if not os.path.exists(x["f"]):
+            hilang.append(x["f"])
+            continue
+        mb = round(os.path.getsize(x["f"]) / 1048576, 2)
+        pola = re.compile(r'("f":\s*"' + re.escape(x["f"]) + r'",\s*"s":\s*)([\d.]+)')
+        teks, n = pola.subn(lambda m: m.group(1) + repr(mb), teks, count=1)
+        if n and float(x["s"]) != mb:
+            diperbarui += 1
+    open(data, "w", encoding="utf-8").write(teks)
+
+    terdaftar = {x["f"] for x in talks}
+    nyasar = sorted(f"narasumber/{f}" for f in os.listdir("narasumber")
+                    if f.lower().endswith(".pdf")) if os.path.isdir("narasumber") else []
+    nyasar = [f for f in nyasar if f not in terdaftar]
+
+    print(f"  narasumber              : {len(talks)} entri, {diperbarui} ukuran diperbarui")
+    for f in hilang:
+        print(f"      HILANG  {f}  (tercantum di data-talks.js, berkasnya tidak ada)")
+    for f in nyasar:
+        print(f"      ?       {f}  (belum didaftarkan di data-talks.js)")
+
+
 def main():
     courses = load_courses()
     judul_lama = {m["f"]: m["t"] for c in courses for m in c["m"]}
@@ -145,6 +184,7 @@ def main():
     tertahan = sum(len(c["m"]) for c in courses if not c["pub"])
     if tertahan:
         print(f"      ditahan {'(belum disortir)':32s} {tertahan} berkas")
+    sync_narasumber()
 
     if nyasar:
         print(f"\n  PERHATIAN: {len(nyasar)} berkas PDF tergeletak langsung di materi/")
