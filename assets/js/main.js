@@ -484,6 +484,7 @@
     }
     if (c.sks) meta.appendChild(el('span', 'chip chip-neutral', c.sks + ' ' + t('teach.sks')));
     meta.appendChild(el('span', 'chip chip-neutral', c.prodiName[lang]));
+    if (c.aktif === false) meta.appendChild(el('span', 'chip chip-neutral', t('teach.archived')));
     if (c.m.length && c.pub) {
       meta.appendChild(el('span', 'chip', c.m.length + ' ' + t('teach.materials')));
     }
@@ -532,32 +533,46 @@
   }
 
   /* Mata kuliah yang tidak lagi diampu ditandai "aktif": false pada
-     data-courses.js; datanya disimpan, tetapi tidak ditampilkan. */
+     data-courses.js. Mata kuliah itu tidak dicampur dengan yang masih
+     diampu, melainkan dikumpulkan di bagian arsip tersendiri, sebab
+     materinya masih berguna untuk dipelajari. */
   function aktif(c) { return c.aktif !== false; }
 
   function initCourses() {
     var mt = document.getElementById('courses-mt');
     var other = document.getElementById('courses-other');
+    var arsipHost = document.getElementById('courses-archive');
+    var arsipBlok = document.getElementById('archive-block');
     if (!mt || !window.COURSES) return;
     var daftar = window.COURSES.filter(aktif);
+    var arsip = window.COURSES.filter(function (c) { return !aktif(c); });
+
+    /* Judul bagian arsip disembunyikan bila tidak ada isinya, agar tidak
+       menggantung tanpa satu pun mata kuliah di bawahnya. */
+    if (arsipBlok) arsipBlok.hidden = !arsip.length;
 
     function render() {
       mt.textContent = '';
       if (other) other.textContent = '';
+      if (arsipHost) arsipHost.textContent = '';
       daftar.forEach(function (c) {
         var host = c.prodi === 'MT' ? mt : other;
         if (host) host.appendChild(courseNode(c));
       });
+      if (arsipHost) {
+        arsip.forEach(function (c) { arsipHost.appendChild(courseNode(c)); });
+      }
 
       var countEl = document.getElementById('course-count');
       if (countEl) {
-        var files = daftar.reduce(function (n, c) {
+        var tampil = daftar.concat(arsip);
+        var files = tampil.reduce(function (n, c) {
           return n + (c.pub ? c.m.length : 0);
         }, 0);
         countEl.textContent = files
-          ? t('teach.count').replace('{n}', String(daftar.length))
+          ? t('teach.count').replace('{n}', String(tampil.length))
                             .replace('{m}', String(files))
-          : t('teach.count.soon').replace('{n}', String(daftar.length));
+          : t('teach.count.soon').replace('{n}', String(tampil.length));
       }
       initReveal();
     }

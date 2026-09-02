@@ -67,7 +67,8 @@ def judul_dari_nama(nama):
     t = re.sub(r"^\d+[a-z]?[-_. ]+", "", t)          # buang nomor urut di depan
     t = t.replace("-", " ").replace("_", " ")
     t = re.sub(r"\s+", " ", t).strip()
-    kecil = {"dan", "di", "ke", "dari", "untuk", "pada", "yang", "the", "of", "and", "in"}
+    kecil = {"dan", "di", "ke", "dari", "untuk", "pada", "yang", "dalam", "serta",
+             "the", "of", "and", "in", "for", "on"}
     kata = [w if w.lower() in kecil else (w[:1].upper() + w[1:]) for w in t.split()]
     if kata:
         kata[0] = kata[0][:1].upper() + kata[0][1:]

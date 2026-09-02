@@ -298,6 +298,8 @@ def course_body(c, dic):
         chips.append('<span class="chip chip-neutral">%s %s</span>'
                      % (esc(c["sks"]), esc(dic["teach.sks"])))
     chips.append('<span class="chip chip-neutral">%s</span>' % esc(c["prodiName"]["id"]))
+    if c.get("aktif") is False:
+        chips.append('<span class="chip chip-neutral">%s</span>' % esc(dic["teach.archived"]))
     if c.get("pub") and c["m"]:
         chips.append('<span class="chip">%d %s</span>' % (len(c["m"]), esc(dic["teach.materials"])))
 
@@ -502,9 +504,12 @@ if __name__ == "__main__":
              TEACHING_BODY, active="teach"),
     ]
     # Satu halaman per mata kuliah, agar tiap kelas punya tautan sendiri.
-    # Mata kuliah yang tidak lagi diampu ("aktif": false) dilewati, dan
-    # halaman lamanya dihapus agar tidak tertinggal di situs.
-    courses = [c for c in _courses() if c.get("aktif") is not False]
+    # Mata kuliah yang tidak lagi diampu ("aktif": false) tetap dibuatkan
+    # halaman selama materinya sudah terbit, sebab bagian arsip di halaman
+    # Pengajaran menautkannya. Yang tidak diampu dan juga tidak punya materi
+    # terbit dilewati, dan halaman lamanya dihapus agar tidak tertinggal.
+    courses = [c for c in _courses()
+               if c.get("aktif") is not False or (c.get("pub") and c["m"])]
     aktif_slug = {c["slug"] for c in courses}
     for f in sorted(glob.glob(os.path.join(ROOT, "mk", "*.html"))):
         if os.path.basename(f)[:-5] not in aktif_slug:

@@ -473,6 +473,12 @@ TEACHING_BODY = """
 
         <h2 style="font-size:1.35rem;margin-bottom:18px" data-i18n="teach.group.other">Tahap Persiapan Bersama &amp; Program Studi Lain</h2>
         <div id="courses-other" style="display:grid;gap:12px"></div>
+
+        <div id="archive-block" hidden>
+          <h2 style="font-size:1.35rem;margin:48px 0 6px" data-i18n="teach.group.archive">Tidak lagi diampu</h2>
+          <p style="color:var(--muted);font-size:.92rem;margin-bottom:18px" data-i18n="teach.group.archive.d">Mata kuliah berikut sudah tidak lagi diampu Dr. Eka Nurfani. Materinya tetap ditayangkan agar masih bisa dipelajari mahasiswa.</p>
+          <div id="courses-archive" style="display:grid;gap:12px"></div>
+        </div>
       </div>
     </section>
 """
