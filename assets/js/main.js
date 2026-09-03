@@ -535,8 +535,16 @@
   /* Mata kuliah yang tidak lagi diampu ditandai "aktif": false pada
      data-courses.js. Mata kuliah itu tidak dicampur dengan yang masih
      diampu, melainkan dikumpulkan di bagian arsip tersendiri, sebab
-     materinya masih berguna untuk dipelajari. */
+     materinya masih berguna untuk dipelajari.
+
+     Yang masuk arsip hanyalah mata kuliah yang materinya benar-benar
+     terbit. Mata kuliah tak diampu yang materinya belum diterbitkan tidak
+     ditampilkan sama sekali, sebab kartunya hanya akan berisi keterangan
+     "materi belum diunggah" tanpa ada yang bisa dibuka. Aturan ini sama
+     dengan syarat pembuatan halaman mata kuliah di tools/build_pages.py,
+     sehingga daftar dan halamannya tidak mungkin berbeda. */
   function aktif(c) { return c.aktif !== false; }
+  function diarsipkan(c) { return !aktif(c) && c.pub && c.m.length > 0; }
 
   function initCourses() {
     var mt = document.getElementById('courses-mt');
@@ -545,7 +553,7 @@
     var arsipBlok = document.getElementById('archive-block');
     if (!mt || !window.COURSES) return;
     var daftar = window.COURSES.filter(aktif);
-    var arsip = window.COURSES.filter(function (c) { return !aktif(c); });
+    var arsip = window.COURSES.filter(diarsipkan);
 
     /* Judul bagian arsip disembunyikan bila tidak ada isinya, agar tidak
        menggantung tanpa satu pun mata kuliah di bawahnya. */
