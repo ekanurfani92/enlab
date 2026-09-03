@@ -169,12 +169,7 @@ FOOTER = """  <footer class="site-footer">
   </footer>
 
   <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/data-publications.js"></script>
-  <script src="assets/js/data-courses.js"></script>
-  <script src="assets/js/data-grants.js"></script>
-  <script src="assets/js/data-theses.js"></script>
-  <script src="assets/js/data-talks.js"></script>
-  <script src="assets/js/main.js"></script>
+__DATA__  <script src="assets/js/main.js"></script>
 """
 
 JSONLD = """  <script type="application/ld+json">
@@ -457,7 +452,15 @@ def retarget(doc, prefix):
 
 
 def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="",
-         html_attr="", robots=None):
+         html_attr="", robots=None, data=()):
+    """Menulis satu halaman.
+
+    ``data`` menyebut berkas data yang benar-benar dipakai halaman ini. Dulu
+    kelima berkas dimuat di semua halaman, sehingga halaman Narasumber ikut
+    mengunduh 46 KB daftar publikasi, mata kuliah, hibah, dan tugas akhir yang
+    tidak pernah dipakainya. Perender di main.js sudah berhenti sendiri bila
+    penampung atau datanya tidak ada, jadi menghilangkan yang tak terpakai aman.
+    """
     canon = SITE_URL + "/" + ("" if filename == "index.html" else filename)
     head = (HEAD
             .replace("__CANON__", canon)
@@ -468,6 +471,8 @@ def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="
         head = head.replace('<meta name="robots" content="index, follow">',
                             '<meta name="robots" content="%s">' % robots)
     foot = FOOTER.replace("__YEAR__", str(datetime.date.today().year)).replace("__TODAY__", TODAY)
+    foot = foot.replace("__DATA__", "".join(
+        '  <script src="assets/js/data-%s.js"></script>\n' % n for n in data))
 
     prefix = "../" * filename.count("/")
     head, foot, body = (retarget(x, prefix) for x in (head, foot, body))
@@ -517,31 +522,32 @@ if __name__ == "__main__":
                  "__LATEST__",
                  theses_fallback([x for x in theses
                                   if x["y"] == max(t["y"] for t in theses)], _DICT_ID)),
-             active="home", extra_head=JSONLD),
+             active="home", extra_head=JSONLD,
+             data=("publications", "grants", "theses")),
         page("publications.html", "meta.title.pub",
              "Publikasi | ENLab ITERA",
              "Daftar lengkap 57 publikasi ilmiah Dr. Eka Nurfani dan tim ENLab ITERA pada jurnal "
              "internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.",
-             PUBLICATIONS_BODY, active="pub"),
+             PUBLICATIONS_BODY, active="pub", data=("publications",)),
         page("theses.html", "meta.title.theses",
              "Tugas Akhir Mahasiswa | ENLab ITERA",
              "Daftar judul tugas akhir mahasiswa bimbingan Dr. Eka Nurfani di ITERA sejak 2019, "
              "dikelompokkan per tahun kelulusan: sel surya perovskit, DSSC, superkapasitor, "
              "fotodetektor, dan fotokatalisis.",
              THESES_BODY.replace("__FALLBACK__", theses_fallback(theses, _DICT_ID)),
-             active="theses"),
+             active="theses", data=("theses",)),
         page("teaching.html", "meta.title.teach",
              "Pengajaran & Materi Kuliah | ENLab ITERA",
              "Materi kuliah Dr. Eka Nurfani di ITERA yang dapat diunduh: Fisika Dasar (TPB), "
              "Fisika Dasar II, Material Elektronik Optik Magnetik, Karakterisasi Material, "
              "Semikonduktor, dan Material Nano.",
-             TEACHING_BODY, active="teach"),
+             TEACHING_BODY, active="teach", data=("courses",)),
         page("talks.html", "meta.title.talks",
              "Narasumber | ENLab ITERA",
              "Materi presentasi Dr. Eka Nurfani sebagai narasumber pada webinar, seminar, "
              "dan sesi berbagi ilmiah, lengkap dengan slide yang dapat diunduh.",
              TALKS_BODY.replace("__FALLBACK__", talks_fallback(_talks(), _DICT_ID)),
-             active="talks"),
+             active="talks", data=("talks",)),
     ]
     # Satu halaman per mata kuliah, agar tiap kelas punya tautan sendiri.
     # Mata kuliah yang tidak lagi diampu ("aktif": false) tetap dibuatkan
@@ -566,7 +572,8 @@ if __name__ == "__main__":
             _html.escape(ringkas, quote=True),
             course_body(c, _DICT_ID), active="teach",
             html_attr=' data-base="../"',
-            robots=None if c.get("pub") else "noindex, follow"))
+            robots=None if c.get("pub") else "noindex, follow",
+            data=("courses",)))
 
     n_url = write_sitemap(courses)
 
