@@ -280,6 +280,23 @@ pengampu (bertanda `[EN]`, `[EKA]`, atau `[eka]` pada arsip asli). Buku teks dan
 materi pihak ketiga **tidak** disertakan karena tidak boleh disebarluaskan;
 mahasiswa dapat mengaksesnya melalui perpustakaan ITERA.
 
+**Pengecualian — tiga foto berlisensi bebas.** Deck Semikonduktor Minggu 1
+(`materi/semikonduktor/01-sejarah-dan-perkembangan-material-semikonduktor.pdf`)
+memuat tiga foto pihak ketiga yang lisensinya mengizinkan penyebarluasan publik.
+Atribusinya tercetak pada slide masing-masing, dan diulang di sini sebagaimana
+disyaratkan lisensinya:
+
+| Slide | Foto | Lisensi | Atribusi |
+|---|---|---|---|
+| 7 | Tabung osilasi Fleming, 1904 | Domain publik | J. A. Fleming, *The Thermionic Valve*, The Wireless Press, London, 1919. Wikimedia Commons, `File:Fleming_valves.jpg` |
+| 8 | ENIAC | Domain publik (karya pegawai Pemerintah Federal AS) | U.S. Army, Ballistic Research Laboratory. Wikimedia Commons, `File:Eniac.jpg` |
+| 13 | Intel 4004 | **CC BY-SA 4.0** | Foto Thomas Nguyen, 2016. Wikimedia Commons, `File:Intel_C4004.jpg` |
+
+Selebihnya gambar pada deck itu dibuat sendiri dengan TikZ/pgfplots. Gambar dari
+Museum TEL dan dari buku Dimitrijev (Oxford University Press) sengaja dikeluarkan
+dan diganti, sebab izinnya tidak mencakup penerbitan publik. Rinciannya ada pada
+`KULIAH/Semikonduktor/2026-2027 Gasal/slides/SUMBER-GAMBAR.md`.
+
 Data nilai, daftar hadir, dan berkas tugas akhir tidak dimuat di situs ini.
 Halaman **Tugas Akhir** memuat nama dan judul tugas akhir lulusan — keduanya
 bersifat publik sebagaimana tercantum pada repositori tugas akhir ITERA. NIM,

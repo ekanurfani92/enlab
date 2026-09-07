@@ -9,6 +9,7 @@ materi/*
 !materi/fisika-dasar-2-mt/
 !materi/fisika-dasar-tpb/
 !materi/material-elektronik-optik-magnetik/
+!materi/semikonduktor/
 
 __pycache__/
 *.pyc
