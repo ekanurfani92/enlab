@@ -21,6 +21,12 @@ import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_URL = "https://ekanurfani92.github.io/enlab"   # ganti bila memakai domain sendiri
+
+# Statistik pengunjung lewat GoatCounter. Isinya adalah alamat penghitung milik
+# akun ENLab; dasbornya di https://enlab.goatcounter.com. Kosongkan tanda kutip
+# ini bila suatu saat tidak ingin ada pelacakan sama sekali - skripnya otomatis
+# tidak ikut ditulis ke halaman mana pun.
+GOATCOUNTER = "https://enlab.goatcounter.com/count"
 TODAY = datetime.date.today().isoformat()
 _DICT_ID = None  # diisi saat dijalankan
 
@@ -69,6 +75,17 @@ HEAD = """  <meta charset="utf-8">
     })();
   </script>
 """
+
+# Dipasang di <head> sebagai skrip async sehingga tidak menahan render. GoatCounter
+# tidak memakai cookie dan tidak menyimpan data pribadi, jadi situs tidak perlu
+# banner persetujuan. Kunjungan dari localhost tidak ikut terhitung, sehingga
+# pratinjau lokal tidak mengotori angka.
+ANALYTICS = """  <script data-goatcounter="%s"
+          async src="https://gc.zgo.at/count.js"></script>
+"""
+
+if GOATCOUNTER:
+    HEAD += ANALYTICS % GOATCOUNTER
 
 
 def header(active=""):
