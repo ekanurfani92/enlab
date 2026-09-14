@@ -180,6 +180,7 @@ FOOTER = """  <footer class="site-footer">
       </div>
       <div class="footer-bottom">
         <span>&copy; <span data-year>__YEAR__</span> ENLab, ITERA. <span data-i18n="foot.rights">Seluruh hak cipta dilindungi.</span></span>
+        <span class="footer-visits" id="site-visits" hidden></span>
         <span><span data-i18n="foot.updated">Pembaruan terakhir</span>: <time datetime="__TODAY__">__TODAY__</time></span>
       </div>
     </div>

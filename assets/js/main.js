@@ -658,6 +658,41 @@
     render();
   }
 
+  /* ---------- Jumlah pengunjung ---------- */
+  /* Angkanya diambil dari penghitung publik GoatCounter. Endpoint itu baru
+     menjawab bila setelan "allow using the visitor counter" aktif di dasbor
+     enlab.goatcounter.com. Selama belum aktif - atau bila jaringan pengunjung
+     memblokir goatcounter.com - elemennya dibiarkan tersembunyi, sehingga
+     footer tetap rapi dan tidak ada angka setengah jadi yang tampak rusak. */
+  function initVisits() {
+    var host = document.getElementById('site-visits');
+    if (!host || !window.fetch) return;
+
+    var jumlah = null;
+
+    function render() {
+      if (jumlah === null) return;
+      var angka = jumlah.toLocaleString(lang === 'id' ? 'id-ID' : 'en-US');
+      host.textContent = t('foot.visits').replace('{n}', angka);
+    }
+
+    fetch('https://enlab.goatcounter.com/counter/TOTAL.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        // count_unique = pengunjung unik; count = jumlah tampilan halaman.
+        var mentah = String(d.count_unique || d.count || '').replace(/\D/g, '');
+        var n = parseInt(mentah, 10);
+        if (!n) return;
+        jumlah = n;
+        host.hidden = false;
+        render();
+      })
+      .catch(function () { /* penghitung belum aktif: biarkan tersembunyi */ });
+
+    document.addEventListener('langchange', render);
+  }
+
   /* ---------- Bootstrap ---------- */
   function init() {
     applyLang();
@@ -671,6 +706,7 @@
     initCourses();
     initCoursePage();
     initTalks();
+    initVisits();
 
     document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-lang-btn')); });

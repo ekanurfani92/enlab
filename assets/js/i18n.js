@@ -205,7 +205,8 @@ window.I18N = {
     "foot.rights": "Seluruh hak cipta dilindungi.",
     "foot.itera": "Institut Teknologi Sumatera",
     "foot.prodi": "Program Studi Teknik Material",
-    "foot.updated": "Pembaruan terakhir"
+    "foot.updated": "Pembaruan terakhir",
+    "foot.visits": "{n} pengunjung"
   },
 
   en: {
@@ -411,6 +412,7 @@ window.I18N = {
     "foot.rights": "All rights reserved.",
     "foot.itera": "Institut Teknologi Sumatera",
     "foot.prodi": "Materials Engineering Study Program",
-    "foot.updated": "Last updated"
+    "foot.updated": "Last updated",
+    "foot.visits": "{n} visitors"
   }
 };
