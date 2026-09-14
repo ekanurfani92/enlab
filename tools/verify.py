@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 # Halaman mata kuliah di mk/ ikut diperiksa; jumlahnya mengikuti data-courses.js.
 PAGES = (["index.html", "publications.html", "theses.html", "teaching.html",
-          "talks.html", "404.html"]
+          "talks.html", "statistik.html", "404.html"]
          + sorted(glob.glob("mk/*.html")))
 problems = []
 

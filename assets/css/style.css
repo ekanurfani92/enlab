@@ -558,6 +558,47 @@ p { margin: 0; text-wrap: pretty; }
   display: block; color: var(--muted); font-size: .8rem; line-height: 1.45; margin-top: 3px;
 }
 
+/* ---------- Halaman statistik ----------
+   Tiga angka utama sebagai kartu KPI, lalu peringkat halaman sebagai batang
+   horizontal. Batangnya SATU warna untuk semua baris: panjang batang sudah
+   mengkodekan besarnya, jadi mewarnainya bergradasi menurut nilai hanya
+   menggandakan info yang sama dan menghabiskan satu-satunya kanal warna. */
+.stat-cards {
+  display: grid; gap: 12px; margin-bottom: 38px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+.stat-card {
+  padding: 18px 20px; border-radius: var(--r-sm);
+  background: var(--surface-2); border: 1px solid var(--line);
+}
+.stat-card .stat-label { display: block; color: var(--muted); font-size: .82rem; }
+.stat-card .stat-value {
+  display: block; margin-top: 6px; font-size: 1.9rem; font-weight: 650;
+  line-height: 1.1; color: var(--brand);
+}
+
+.stats-h2 { font-size: clamp(1.05rem, 2.2vw, 1.2rem); margin: 0 0 14px; }
+.stats-h2 + .material-list { margin-bottom: 34px; }
+
+.stat-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 14px;
+  align-items: baseline; padding: 10px 2px;
+}
+.stat-row .stat-name { font-size: .9rem; min-width: 0; overflow-wrap: anywhere; }
+.stat-row .stat-n {
+  font-size: .86rem; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+/* Rel batang memenuhi lebar baris; 4px hanya di ujung data, siku di pangkal. */
+.stat-row .stat-bar {
+  grid-column: 1 / -1; height: 8px; border-radius: 0 4px 4px 0;
+  background: var(--brand); min-width: 2px;
+}
+.stat-row .stat-track {
+  grid-column: 1 / -1; height: 8px; border-radius: 0 4px 4px 0;
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+}
+.stat-row .stat-track > span { display: block; height: 100%; border-radius: 0 4px 4px 0; background: var(--brand); }
+
 /* Dokumen bimbingan TA pada halaman Tugas Akhir. */
 .ta-docs { max-width: 760px; }
 .ta-docs h2 { font-size: clamp(1.05rem, 2.2vw, 1.25rem); margin: 0 0 6px; }

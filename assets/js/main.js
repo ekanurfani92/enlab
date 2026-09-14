@@ -693,6 +693,138 @@
     document.addEventListener('langchange', render);
   }
 
+  /* ---------- Halaman statistik ---------- */
+  /* Angkanya diambil dari penghitung publik GoatCounter, satu permintaan per
+     jalur. Tidak ada token di sini: endpoint /counter/ memang dirancang publik,
+     sedangkan API bertoken tidak boleh dipakai dari halaman yang bisa dibaca
+     siapa pun. Konsekuensinya kita hanya bisa memperoleh jumlah, bukan rincian
+     seperti negara asal atau perujuk. */
+  function initStats() {
+    var simpul = document.getElementById('stats-paths');
+    var ringkas = document.getElementById('stats-summary');
+    if (!simpul || !ringkas || !window.fetch) return;
+
+    var cfg;
+    try { cfg = JSON.parse(simpul.textContent); } catch (e) { return; }
+
+    var galat = document.getElementById('stats-error');
+    var elHal = document.getElementById('stats-pages');
+    var elMk = document.getElementById('stats-courses');
+    var data = null;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    function sejakHariLalu(n) {
+      var d = new Date();
+      d.setDate(d.getDate() - (n - 1));
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+
+    function ambil(jalur, mulai) {
+      var url = cfg.base + encodeURIComponent(jalur) + '.json'
+              + (mulai ? '?start=' + mulai : '');
+      // GoatCounter menjawab 404 untuk jalur yang belum pernah dikunjungi,
+      // tetapi badannya tetap JSON sah berisi nol. Itu jawaban, bukan galat;
+      // hanya status lain (mis. 403 bila penghitung publik dimatikan lagi)
+      // yang diperlakukan sebagai gagal dan menyembunyikan barisnya.
+      return fetch(url)
+        .then(function (r) { return (r.ok || r.status === 404) ? r.json() : null; })
+        .then(function (d) {
+          if (!d) return null;
+          var s = String(d.count_unique || d.count || '0').replace(/\D/g, '');
+          return parseInt(s, 10) || 0;
+        })
+        .catch(function () { return null; });
+    }
+
+    function angka(n) {
+      return n.toLocaleString(lang === 'id' ? 'id-ID' : 'en-US');
+    }
+
+    function nama(x) { return x.k ? t(x.k) : x.t[lang]; }
+
+    function kartu(kunci, nilai) {
+      var d = el('div', 'stat-card');
+      d.appendChild(el('span', 'stat-label', t(kunci)));
+      d.appendChild(el('span', 'stat-value', nilai === null ? '-' : angka(nilai)));
+      return d;
+    }
+
+    /* Satu baris = nama, jumlah, dan batang sepanjang nilainya relatif terhadap
+       baris terbesar. Semua batang sewarna: panjangnya sudah menyatakan besar. */
+    function baris(label, n, maks) {
+      var li = el('li');
+      var row = el('div', 'stat-row');
+      row.appendChild(el('span', 'stat-name', label));
+      row.appendChild(el('span', 'stat-n', angka(n)));
+      var track = el('span', 'stat-track');
+      var isi = el('span');
+      // Nol harus terlihat nol: tanpa penjagaan ini lebar minimum 2% membuat
+      // halaman yang belum pernah dibuka tampak seperti punya sedikit kunjungan.
+      var lebar = (n > 0 && maks > 0) ? Math.max(2, Math.round(n / maks * 100)) : 0;
+      isi.style.width = lebar + '%';
+      track.appendChild(isi);
+      row.appendChild(track);
+      li.appendChild(row);
+      return li;
+    }
+
+    function daftar(host, entri, maks) {
+      if (!host) return;
+      host.textContent = '';
+      var ada = entri.filter(function (x) { return x.n !== null; });
+      if (!ada.length) {
+        host.appendChild(el('p', 'no-material', t('stats.empty')));
+        return;
+      }
+      ada.sort(function (a, b) { return b.n - a.n; });
+      ada.forEach(function (x) { host.appendChild(baris(nama(x), x.n, maks)); });
+    }
+
+    function render() {
+      if (!data) return;
+      ringkas.textContent = '';
+      ringkas.appendChild(kartu('stats.total', data.total));
+      ringkas.appendChild(kartu('stats.d30', data.d30));
+      ringkas.appendChild(kartu('stats.d7', data.d7));
+      // Kedua daftar memakai skala yang sama supaya panjang batang dapat
+      // dibandingkan lintas bagian, bukan hanya di dalam bagiannya sendiri.
+      var maks = 0;
+      data.utama.concat(data.mk).forEach(function (x) {
+        if (x.n !== null && x.n > maks) maks = x.n;
+      });
+      daftar(elHal, data.utama, maks);
+      daftar(elMk, data.mk, maks);
+    }
+
+    ringkas.appendChild(el('p', 'no-material', t('stats.loading')));
+
+    var semua = cfg.utama.concat(cfg.mk);
+    Promise.all(
+      [ambil('TOTAL'), ambil('TOTAL', sejakHariLalu(30)), ambil('TOTAL', sejakHariLalu(7))]
+        .concat(semua.map(function (x) { return ambil(x.p); }))
+    ).then(function (hasil) {
+      if (hasil[0] === null) {
+        ringkas.textContent = '';
+        if (galat) galat.hidden = false;
+        return;
+      }
+      var sisa = hasil.slice(3);
+      data = {
+        total: hasil[0], d30: hasil[1], d7: hasil[2],
+        utama: cfg.utama.map(function (x, i) {
+          return { k: x.k, t: x.t, n: sisa[i] };
+        }),
+        mk: cfg.mk.map(function (x, i) {
+          return { k: x.k, t: x.t, n: sisa[cfg.utama.length + i] };
+        })
+      };
+      render();
+    });
+
+    document.addEventListener('langchange', render);
+  }
+
   /* ---------- Bootstrap ---------- */
   function init() {
     applyLang();
@@ -707,6 +839,7 @@
     initCoursePage();
     initTalks();
     initVisits();
+    initStats();
 
     document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
       b.addEventListener('click', function () { setLang(b.getAttribute('data-lang-btn')); });

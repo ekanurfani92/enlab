@@ -533,3 +533,33 @@ TEACHING_BODY = """
       </div>
     </section>
 """
+
+STATS_BODY = """
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-i18n="nav.home">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span data-i18n="nav.stats">Statistik</span>
+        </nav>
+        <h1 data-i18n="stats.page.h1">Statistik Kunjungan</h1>
+        <p data-i18n="stats.page.lead">Jumlah kunjungan situs ENLab, dihitung oleh GoatCounter tanpa kuki dan tanpa melacak identitas pengunjung.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:clamp(30px,4vw,48px)">
+      <div class="container">
+        <div id="stats-error" class="no-material" hidden data-i18n="stats.error">Angka kunjungan sedang tidak dapat diambil. Coba muat ulang halaman beberapa saat lagi.</div>
+
+        <div class="stat-cards" id="stats-summary"></div>
+
+        <h2 class="stats-h2" data-i18n="stats.bypage">Per halaman</h2>
+        <ul class="material-list" id="stats-pages"></ul>
+
+        <h2 class="stats-h2" data-i18n="stats.bycourse">Per mata kuliah</h2>
+        <ul class="material-list" id="stats-courses"></ul>
+
+        <p class="pub-count" style="margin-top:30px" data-i18n="stats.note">Angka ini menghitung tampilan halaman, bukan berkas PDF yang diunduh. Statistik rinci seperti negara asal dan halaman perujuk hanya terlihat di dasbor GoatCounter.</p>
+      </div>
+    </section>
+"""

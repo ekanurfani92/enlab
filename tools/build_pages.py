@@ -164,6 +164,7 @@ FOOTER = """  <footer class="site-footer">
             <li><a href="theses.html" data-i18n="nav.theses">Tugas Akhir</a></li>
             <li><a href="teaching.html" data-i18n="nav.teaching">Pengajaran</a></li>
             <li><a href="talks.html" data-i18n="nav.talks">Narasumber</a></li>
+            <li><a href="statistik.html" data-i18n="nav.stats">Statistik</a></li>
             <li><a href="https://scholar.google.com/citations?user=5Sz8OyAAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
             <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57190941043" target="_blank" rel="noopener">Scopus</a></li>
             <li><a href="https://sinta.kemdikbud.go.id/authors/profile/6659724" target="_blank" rel="noopener">SINTA</a></li>
@@ -180,7 +181,7 @@ FOOTER = """  <footer class="site-footer">
       </div>
       <div class="footer-bottom">
         <span>&copy; <span data-year>__YEAR__</span> ENLab, ITERA. <span data-i18n="foot.rights">Seluruh hak cipta dilindungi.</span></span>
-        <span class="footer-visits" id="site-visits" hidden></span>
+        <a class="footer-visits" id="site-visits" href="statistik.html" hidden></a>
         <span><span data-i18n="foot.updated">Pembaruan terakhir</span>: <time datetime="__TODAY__">__TODAY__</time></span>
       </div>
     </div>
@@ -394,6 +395,28 @@ def course_body(c, dic):
    .replace("__MATERIALS__", materials)
 
 
+def stats_paths(courses):
+    """Daftar jalur yang ditanya ke penghitung GoatCounter.
+
+    Disusun saat build, bukan ditulis tangan di JavaScript, supaya halaman
+    mata kuliah yang muncul di sini selalu sama dengan yang benar-benar
+    dibangun. GoatCounter mencatat jalur apa adanya, termasuk awalan
+    "/enlab/", jadi awalan itu diambil dari SITE_URL.
+    """
+    base = re.sub(r"^https?://[^/]+", "", SITE_URL) + "/"
+    utama = [("", "nav.home"), ("publications.html", "nav.publications"),
+             ("theses.html", "nav.theses"), ("teaching.html", "nav.teaching"),
+             ("talks.html", "nav.talks")]
+    return {
+        # Alamat penghitung diturunkan dari konstanta yang sama dengan pelacaknya,
+        # supaya keduanya tidak pernah menunjuk akun yang berbeda.
+        "base": GOATCOUNTER.rsplit("/", 1)[0] + "/counter/",
+        "utama": [{"p": base + f, "k": k} for f, k in utama],
+        "mk": [{"p": base + "mk/" + c["slug"] + ".html", "t": c["t"]}
+               for c in courses],
+    }
+
+
 def write_sitemap(courses):
     urls = [(SITE_URL + "/", "1.0"),
             (SITE_URL + "/publications.html", "0.8"),
@@ -527,7 +550,7 @@ if __name__ == "__main__":
     _DICT_ID = _dictionary_id()
 
     from page_bodies import (INDEX_BODY, PUBLICATIONS_BODY, THESES_BODY,
-                             TEACHING_BODY, TALKS_BODY)
+                             TEACHING_BODY, TALKS_BODY, STATS_BODY)
 
     theses = _theses()
 
@@ -592,6 +615,21 @@ if __name__ == "__main__":
             html_attr=' data-base="../"',
             robots=None if c.get("pub") else "noindex, follow",
             data=("courses",)))
+
+    # Halaman statistik dibangun setelah daftar mata kuliah diketahui, sebab
+    # jalur yang dipantau diturunkan darinya. Sengaja "noindex": isinya angka
+    # yang berubah terus dan tidak berguna di hasil pencarian, jadi ia juga
+    # tidak dimasukkan ke sitemap.
+    pages.append(page(
+        "statistik.html", "meta.title.stats",
+        "Statistik Kunjungan | ENLab ITERA",
+        "Jumlah kunjungan halaman situs ENLab ITERA, dihitung oleh GoatCounter "
+        "tanpa kuki dan tanpa melacak identitas pengunjung.",
+        STATS_BODY, active="",
+        robots="noindex, follow",
+        extra_head='  <script type="application/json" id="stats-paths">'
+                   + json.dumps(stats_paths(courses), ensure_ascii=False)
+                   + "</script>\n"))
 
     n_url = write_sitemap(courses)
 
