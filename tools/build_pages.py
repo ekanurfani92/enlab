@@ -13,6 +13,7 @@ teaching.html) yang tetap bisa disunting langsung bila diperlukan.
 
 import os
 import re
+import hashlib
 import glob
 import json
 import html as _html
@@ -395,6 +396,25 @@ def course_body(c, dic):
    .replace("__MATERIALS__", materials)
 
 
+def cap(path):
+    """Menambahkan ?v=<ringkasan isi> pada aset supaya singgahan tidak basi.
+
+    GitHub Pages menyajikan aset dengan "cache-control: max-age=600". Tanpa
+    penanda ini, halaman baru bisa dipasangkan dengan i18n.js lama yang masih
+    tersimpan di browser pengunjung; akibatnya kunci seperti "stats.page.h1"
+    tampil mentah karena kamusnya belum memuat kunci itu. Menyisipkan ringkasan
+    isi berkas ke dalam URL membuat setiap perubahan otomatis menjadi alamat
+    baru, sehingga halaman dan asetnya tidak mungkin berbeda versi.
+    """
+    penuh = os.path.join(ROOT, path)
+    try:
+        with open(penuh, "rb") as f:
+            h = hashlib.sha1(f.read()).hexdigest()[:8]
+    except OSError:
+        return path
+    return path + "?v=" + h
+
+
 def stats_paths(courses):
     """Daftar jalur yang ditanya ke penghitung GoatCounter.
 
@@ -513,7 +533,14 @@ def page(filename, lang_title_key, og_title, desc, body, active="", extra_head="
                             '<meta name="robots" content="%s">' % robots)
     foot = FOOTER.replace("__YEAR__", str(datetime.date.today().year)).replace("__TODAY__", TODAY)
     foot = foot.replace("__DATA__", "".join(
-        '  <script src="assets/js/data-%s.js"></script>\n' % n for n in data))
+        '  <script src="%s"></script>\n' % cap("assets/js/data-%s.js" % n)
+        for n in data))
+
+    # Aset bersama diberi penanda versi setelah isinya final, supaya halaman
+    # tidak pernah dipasangkan dengan kamus atau skrip lama dari singgahan.
+    for _a in ("assets/css/style.css", "assets/js/i18n.js", "assets/js/main.js"):
+        head = head.replace(_a + '"', cap(_a) + '"')
+        foot = foot.replace(_a + '"', cap(_a) + '"')
 
     prefix = "../" * filename.count("/")
     head, foot, body = (retarget(x, prefix) for x in (head, foot, body))
