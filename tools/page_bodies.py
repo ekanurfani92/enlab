@@ -428,6 +428,37 @@ THESES_BODY = """
       </div>
     </section>
 
+    <section class="section" style="padding-top:clamp(30px,4vw,48px);padding-bottom:0">
+      <div class="container">
+        <div class="ta-docs">
+          <h2 data-i18n="thesis.doc.h2">Dokumen bimbingan tugas akhir 2026</h2>
+          <p data-i18n="thesis.doc.lead">Judul yang ditetapkan bagi mahasiswa bimbingan tahun 2026 beserta surat pernyataan yang ditandatangani sebelum penelitian dimulai.</p>
+          <ul class="material-list">
+            <li>
+              <a class="material" href="dokumen-ta/simpulan-judul-ta-2026.pdf" target="_blank" rel="noopener">
+                <span class="pdf-ico">PDF</span>
+                <div>
+                  <b data-i18n="thesis.doc.simpulan">Simpulan Judul Tugas Akhir 2026</b>
+                  <span class="material-d" data-i18n="thesis.doc.simpulan.d">Tiga belas judul pada track sel surya perovskit, DSSC, dan superkapasitor MXene, ditetapkan 14 September 2026.</span>
+                </div>
+                <small>235 KB</small>
+              </a>
+            </li>
+            <li>
+              <a class="material" href="dokumen-ta/surat-pernyataan-keseriusan-ta.pdf" target="_blank" rel="noopener">
+                <span class="pdf-ico">PDF</span>
+                <div>
+                  <b data-i18n="thesis.doc.surat">Surat Pernyataan Keseriusan Pelaksanaan Tugas Akhir</b>
+                  <span class="material-d" data-i18n="thesis.doc.surat.d">Formulir komitmen bimbingan: jadwal konsultasi, laporan kemajuan mingguan, integritas akademik, dan ketentuan surat peringatan.</span>
+                </div>
+                <small>44 KB</small>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section class="section" style="padding-top:clamp(30px,4vw,48px)">
       <div class="container">
         <div class="filters">

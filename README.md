@@ -60,6 +60,8 @@ WEBSITE LAB/
 │
 ├── materi/                 Berkas PDF materi kuliah, dikelompokkan per mata kuliah
 │
+├── dokumen-ta/             Dokumen bimbingan tugas akhir (daftar judul, formulir)
+│
 ├── tools/
 │   ├── build_pages.py      Membangun ulang HTML dari potongan bersama
 │   ├── page_bodies.py      Isi <main> tiap halaman
@@ -297,7 +299,20 @@ Museum TEL dan dari buku Dimitrijev (Oxford University Press) sengaja dikeluarka
 dan diganti, sebab izinnya tidak mencakup penerbitan publik. Rinciannya ada pada
 `KULIAH/Semikonduktor/2026-2027 Gasal/slides/SUMBER-GAMBAR.md`.
 
-Data nilai, daftar hadir, dan berkas tugas akhir tidak dimuat di situs ini.
+Data nilai, daftar hadir, dan naskah tugas akhir mahasiswa tidak dimuat di situs
+ini. Pengecualiannya adalah dua dokumen bimbingan pada `dokumen-ta/`, yang
+diterbitkan atas permintaan dosen pembimbing:
+
+| Berkas | Isi | Data pribadi |
+|---|---|---|
+| `simpulan-judul-ta-2026.pdf` | Ketetapan 13 judul TA 2026 per kode topik | Nama panggilan mahasiswa bimbingan; **tanpa** NIM, kontak, nilai, atau berkas naskah |
+| `surat-pernyataan-keseriusan-ta.pdf` | Formulir komitmen bimbingan | Tidak ada — seluruh isian masih kosong |
+
+Nama pada dokumen pertama berada pada tingkat keterbukaan yang sama dengan
+halaman `theses.html`, yang memang menampilkan nama dan judul tugas akhir
+mahasiswa bimbingan. Bila suatu saat daftar itu perlu ditutup namanya, ganti
+berkasnya dengan versi berkode topik saja dan jalankan ulang
+`tools/publish.sh` — tautan di `theses.html` tidak perlu diubah.
 Halaman **Tugas Akhir** memuat nama dan judul tugas akhir lulusan — keduanya
 bersifat publik sebagaimana tercantum pada repositori tugas akhir ITERA. NIM,
 nilai, dan berkas naskah tidak dicantumkan.
