@@ -299,6 +299,33 @@ Museum TEL dan dari buku Dimitrijev (Oxford University Press) sengaja dikeluarka
 dan diganti, sebab izinnya tidak mencakup penerbitan publik. Rinciannya ada pada
 `KULIAH/Semikonduktor/2026-2027 Gasal/slides/SUMBER-GAMBAR.md`.
 
+**Foto berlisensi bebas lainnya.** Deck Semikonduktor Minggu 5 dan 6 serta
+Material Elektronik, Optik dan Magnetik Minggu 5 memuat foto dari Wikimedia
+Commons. Atribusinya tercetak di bawah tiap foto; yang berlisensi BY/BY-SA
+diulang di sini sebagaimana disyaratkan lisensinya:
+
+| Deck | Foto | Lisensi | Atribusi (Wikimedia Commons) |
+|---|---|---|---|
+| Semikonduktor Mg 5 | Wafer GaAs 2" | CC BY-SA 3.0 | La2O3, 2014, `File:Gallium Arsenide (GaAs) 2" wafer.jpg` |
+| Semikonduktor Mg 5 | LED biru GaN | CC BY 3.0 | Hi-Res Images of Chemical Elements, 2011, `File:Blue LEDs in front of a white painted wall.jpg` |
+| Semikonduktor Mg 6 | Batang polisilikon | CC BY-SA 3.0 | Warut Roonguthai, 2007, `File:Polycrystalline silicon rod.jpg` |
+| Semikonduktor Mg 6 | Ingot Si Czochralski | CC BY-SA 4.0 | Massimiliano Lincetto, 2008, `File:Silicon single crystal.jpg` |
+| Semikonduktor Mg 6 | Wafer berpola | CC BY 2.0 | .RGB. (Flickr), 2012, `File:IMaGe 30988 – Silicon Wafer.jpg` |
+| Semikonduktor Mg 6 | Tungku difusi, implanter ion, stepper | CC BY-SA 3.0 | Guillaume Paumier, 2007 (LAAS-CNRS), `File:Centrotherm diffusion furnace at LAAS 0489.jpg`, `File:Ion implantation machine at LAAS 0522.jpg`, `File:EVG-620 & MA-150 steppers at LAAS (FDLS 2007) 0430.jpg` |
+
+Foto lain pada deck tersebut berstatus domain publik atau CC0 (Semikonduktor:
+TimVickers, Enricoros, G. E. Meyers 1956; MEOM Mg 5: Steffen Maisch, ArticCynda,
+Smial, Georg Pik, Peter Hebels, Antonín Ryska, Petey21, Retired electrician,
+Armstrong1113149, ISCIX-Ex, Ypsilon from Finland, Ravenperch, MatteX). Rinciannya
+ada pada `SUMBER-GAMBAR.md` (Semikonduktor) dan `slides/gambar.csv` (MEOM).
+
+**Gambar dari publikasi sendiri digambar ulang.** Plot Tauc (MEOM Mg 4) dan
+kurva *J*–*V* (MEOM Mg 6) berasal dari M. A. Al Qadri dkk., *J. Electron. Mater.*
+(2024), doi:10.1007/s11664-024-11386-1, Gbr. 5 dan 6. Karena hak cipta terbitan
+dialihkan ke penerbit, gambar aslinya tidak ikut terbit; sejak 5 Oktober 2026
+keduanya digambar ulang dengan pgfplots dari nilai yang dilaporkan paper, dengan
+sitasi lengkap pada slidenya.
+
 Data nilai, daftar hadir, dan naskah tugas akhir mahasiswa tidak dimuat di situs
 ini. Pengecualiannya adalah dua dokumen bimbingan pada `dokumen-ta/`, yang
 diterbitkan atas permintaan dosen pembimbing:
