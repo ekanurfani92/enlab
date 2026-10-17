@@ -319,6 +319,32 @@ Smial, Georg Pik, Peter Hebels, Antonín Ryska, Petey21, Retired electrician,
 Armstrong1113149, ISCIX-Ex, Ypsilon from Finland, Ravenperch, MatteX). Rinciannya
 ada pada `SUMBER-GAMBAR.md` (Semikonduktor) dan `slides/gambar.csv` (MEOM).
 
+**Foto pada deck Fisika Dasar TPB (sejak 17 Oktober 2026).** Pertemuan 1–8
+memuat foto dari Wikimedia Commons; atribusinya tercetak di bawah tiap foto.
+Yang berlisensi BY/BY-SA diulang di sini:
+
+| Deck | Lisensi | Atribusi (Wikimedia Commons) |
+|---|---|---|
+| Fisika Dasar TPB P1 | CC BY-SA 3.0 | LPLT, `File:Mètre-étalon Paris.JPG` |
+| Fisika Dasar TPB P1 | CC BY-SA 3.0 | ArtMechanic, `File:Messschieber.jpg` |
+| Fisika Dasar TPB P2 | CC BY-SA 3.0 | MichaelMaggs, `File:Falling ball.jpg` |
+| Fisika Dasar TPB P2, P7 | CC BY-SA 3.0 | MichaelMaggs, suntingan Richard Bartz, `File:Bouncing ball strobe edit.jpg` |
+| Fisika Dasar TPB P3 | CC BY-SA 4.0 | Paul W, `File:Calshot velodrome.jpg` (dipotong) |
+| Fisika Dasar TPB P4 | CC BY 2.0 | Sheila Sund, `File:Newton's Cradle (15221366308).jpg` |
+| Fisika Dasar TPB P4 | CC BY 2.0 | Jeremy Thompson, `File:Loop Coaster MOMOnGA vertical loop - Yomiuriland.jpg` (dipotong) |
+| Fisika Dasar TPB P5 | CC BY-SA 4.0 | Trude Bergheim Mikkelsen, `File:Slotted-headstock-classical-guitar.JPG` |
+| Fisika Dasar TPB P5 | CC BY-SA 3.0 | Roger McLassus, `File:2006-01-14 Surface waves.jpg` |
+| Fisika Dasar TPB P6 | CC BY-SA 2.0 | Rebecca Partington, `File:Melting - Flickr - Trinity.jpg` |
+| Fisika Dasar TPB P6 | CC BY-SA 3.0 | Passivhaus Institut, `File:Passivhaus thermogram gedaemmt ungedaemmt.png` |
+| Fisika Dasar TPB P6 | CC BY-SA 3.0 | Menchi, `File:Clinical thermometer 38.7.JPG` |
+| Fisika Dasar TPB P7 | CC BY-SA 4.0 | GT1976, `File:2018-10-22 (835) Bridge expansion joint at Donaubrücke in Krems an der Donau, Austria.jpg` |
+| Fisika Dasar TPB P8 | CC BY 2.0 | David Maciulaitis, `File:Boulton & Watt steam engine, Sydney Powerhouse Museum, 2014 (15240699214).jpg` |
+| Fisika Dasar TPB P8 | CC BY-SA 2.0 | JThomas, `File:Cooling towers, Drax power station - geograph.org.uk - 2275301.jpg` |
+
+Foto lainnya berstatus domain publik atau CC0 (NIST, NASA, NHTSA, U.S. Navy,
+lukisan Kneller, Sustermans, dan Boilly, litograf Fenzl, K. Venkataramana,
+Retaildesigner). Rinciannya ada pada `PPT-fisdas-1-latex/gambar.csv`.
+
 **Gambar dari publikasi sendiri digambar ulang.** Plot Tauc (MEOM Mg 4) dan
 kurva *J*–*V* (MEOM Mg 6) berasal dari M. A. Al Qadri dkk., *J. Electron. Mater.*
 (2024), doi:10.1007/s11664-024-11386-1, Gbr. 5 dan 6. Karena hak cipta terbitan

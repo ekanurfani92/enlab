@@ -115,9 +115,20 @@ else:
 
 _TERLARANG = {"rps", "kontrak", "nilai", "dna", "kunci", "jawaban", "rubrik",
               "absensi", "presensi", "uas", "uts", "quiz", "ujian", "penilaian"}
+# Pengecualian yang diputuskan dosen: soal quiz yang SUDAH dilaksanakan,
+# TANPA jawaban/pembahasan, sebagai bahan belajar UTS (17 Oktober 2026).
+# Tambahkan jalur persis di sini; jangan pernah memasukkan soal/kunci UTS-UAS.
+_IZINKAN = {
+    "materi/semikonduktor/06-soal-quiz.pdf",
+    "materi/material-elektronik-optik-magnetik/06-soal-quiz-tipe-a.pdf",
+    "materi/material-elektronik-optik-magnetik/06-soal-quiz-tipe-b.pdf",
+    "materi/material-elektronik-optik-magnetik/06-soal-quiz-tipe-c.pdf",
+}
 _curiga = []
 for _c in _courses:
     for _m in _c["m"]:
+        if _m["f"] in _IZINKAN:
+            continue
         _kata = set(re.split(r"[^a-z0-9]+", os.path.basename(_m["f"]).lower()))
         if _kata & _TERLARANG:
             _curiga.append((_m["f"], bool(_c.get("pub"))))
