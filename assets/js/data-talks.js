@@ -9,6 +9,14 @@
    Menambah entri baru: taruh PDF-nya di narasumber/, sisipkan satu objek di
    paling atas daftar, lalu jalankan bash tools/publish.sh */
 window.TALKS = [
+  { "d": "2026-10-31",
+    "dt": { "id": "31 Oktober 2026", "en": "31 October 2026" },
+    "t": { "id": "Konversi dan Penyimpanan Energi Surya: Perspektif Teknik Material",
+           "en": "Solar Energy Conversion and Storage: A Materials Engineering Perspective" },
+    "e": { "id": "Studium Generale Program Studi Teknik Material ITERA",
+           "en": "Materials Engineering Studium Generale, ITERA" },
+    "f": "narasumber/2026-10-31-studium-generale-teknik-material.pdf",
+    "s": 2.79 },
   { "d": "2025-02-10",
     "dt": { "id": "10 Februari 2025", "en": "10 February 2025" },
     "t": { "id": "Pengalaman Mendapatkan Pendanaan RIIM Kompetisi Gelombang 3",

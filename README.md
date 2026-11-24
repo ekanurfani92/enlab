@@ -417,6 +417,26 @@ sumber tercetak pada slidenya. Rinciannya ada pada
 `KULIAH/Karakterisasi Material/2026-2027 Ganjil/slides/gambar.csv`. Deck
 Karakterisasi Material lama (sebelum 2026/2027) tetap tidak diterbitkan.
 
+**Slide narasumber Studium Generale (31 Oktober 2026).**
+`narasumber/2026-10-31-studium-generale-teknik-material.pdf` adalah *versi daring*:
+gambar dari paper dosen sendiri yang hak ciptanya dialihkan ke penerbit (Physica B,
+Phys. Scr., J. Electron. Mater., Ionics, J. Alloys Compd. Commun., Mater. Sci. Eng. B),
+foto produk Ossila, gambar Das dkk. (ACS Appl. Mater. Interfaces 2018) yang dikutip
+lewat review Altaf dkk., dan kolase halaman pertama paper diganti kotak rujukan.
+Foto PLTS IKN dan peta Global Solar Atlas pada slide sampul bagian diganti foto
+domain publik NREL. Atribusi yang disyaratkan lisensi:
+
+| Gambar | Lisensi | Atribusi |
+|---|---|---|
+| Diagram Ragone | CC BY-SA 3.0 | Shaddim, Wikimedia Commons |
+| Sel dan modul superkapasitor | CC BY-SA 3.0 | Maxwell Technologies, Wikimedia Commons |
+| Photo-supercapacitor; efisiensi perangkat terintegrasi (Gbr. 6 dan 8) | CC BY 4.0 | Zhang dkk., *Adv. Sci.* 8 (2021) 2100552 |
+
+Gambar lain berstatus domain publik atau CC0 (NREL/D. Schroeder, R. Vera Saavedra,
+Sevenethics, SECH SA, Dhatfield, A. Dulyan, Benjah-bmm27), atau dibuat sendiri
+(TikZ/pgfplots, model kristal Python/ASE). Sumber versi daring:
+`KULIAH/# NARASUMBER/2026-10-31 SG Teknik Material/2026-10-31 Eka_Materi SG.versi-daring.tex`.
+
 **Gambar dari publikasi sendiri digambar ulang.** Plot Tauc (MEOM Mg 4) dan
 kurva *J*–*V* (MEOM Mg 6) berasal dari M. A. Al Qadri dkk., *J. Electron. Mater.*
 (2024), doi:10.1007/s11664-024-11386-1, Gbr. 5 dan 6. Karena hak cipta terbitan
