@@ -319,7 +319,7 @@ Smial, Georg Pik, Peter Hebels, Antonín Ryska, Petey21, Retired electrician,
 Armstrong1113149, ISCIX-Ex, Ypsilon from Finland, Ravenperch, MatteX). Rinciannya
 ada pada `SUMBER-GAMBAR.md` (Semikonduktor) dan `slides/gambar.csv` (MEOM).
 
-**Foto pada deck Fisika Dasar TPB (sejak 17 Oktober 2026).** Pertemuan 1–8
+**Foto pada deck Fisika Dasar TPB (sejak 17 Oktober 2026).** Pertemuan 1–15
 memuat foto dari Wikimedia Commons; atribusinya tercetak di bawah tiap foto.
 Yang berlisensi BY/BY-SA diulang di sini:
 
@@ -338,12 +338,84 @@ Yang berlisensi BY/BY-SA diulang di sini:
 | Fisika Dasar TPB P6 | CC BY-SA 3.0 | Passivhaus Institut, `File:Passivhaus thermogram gedaemmt ungedaemmt.png` |
 | Fisika Dasar TPB P6 | CC BY-SA 3.0 | Menchi, `File:Clinical thermometer 38.7.JPG` |
 | Fisika Dasar TPB P7 | CC BY-SA 4.0 | GT1976, `File:2018-10-22 (835) Bridge expansion joint at Donaubrücke in Krems an der Donau, Austria.jpg` |
-| Fisika Dasar TPB P8 | CC BY 2.0 | David Maciulaitis, `File:Boulton & Watt steam engine, Sydney Powerhouse Museum, 2014 (15240699214).jpg` |
-| Fisika Dasar TPB P8 | CC BY-SA 2.0 | JThomas, `File:Cooling towers, Drax power station - geograph.org.uk - 2275301.jpg` |
+| Fisika Dasar TPB P9 | CC BY 2.0 | David Maciulaitis, `File:Boulton & Watt steam engine, Sydney Powerhouse Museum, 2014 (15240699214).jpg` |
+| Fisika Dasar TPB P9 | CC BY-SA 2.0 | JThomas, `File:Cooling towers, Drax power station - geograph.org.uk - 2275301.jpg` |
 
 Foto lainnya berstatus domain publik atau CC0 (NIST, NASA, NHTSA, U.S. Navy,
 lukisan Kneller, Sustermans, dan Boilly, litograf Fenzl, K. Venkataramana,
 Retaildesigner). Rinciannya ada pada `PPT-fisdas-1-latex/gambar.csv`.
+
+Pertemuan 10–15 (terbit 24 November 2026; nomor berkas = minggu RPS, sehingga
+deck yang semula bernomor 8 kini bernomor 9):
+
+| Deck | Lisensi | Atribusi (Wikimedia Commons) |
+|---|---|---|
+| Fisika Dasar TPB P11 | CC BY-SA 3.0 de | Reinhard Manthey, `File:Old-fashioned light bulb.jpg` |
+| Fisika Dasar TPB P12 | CC BY-SA 4.0 | MikeRun, Vera Wurmsdobler, `File:Bar-magnet-iron-filings max.jpg` |
+| Fisika Dasar TPB P12 | CC BY 3.0 | Bidgee, `File:Pole mounted Transformer.jpg` |
+| Fisika Dasar TPB P13, 15 | CC BY-SA 4.0 | Pksois23, `File:Thin Film Interference Soap Bubble.jpg` |
+| Fisika Dasar TPB P13 | CC BY 4.0 | Mariojan photo, `File:Diesel fuel on wet asphalt mj1.jpg` |
+| Fisika Dasar TPB P13 | CC BY-SA 4.0 | Graham Beards, `File:Young's slits.jpg` |
+| Fisika Dasar TPB P14 | CC BY-SA 3.0 | Meganbeckett27, `File:Pencil in glass of water showing refraction (cropped).JPG` |
+| Fisika Dasar TPB P14 | CC BY-SA 2.0 | Neil Theasby, `File:Convex traffic mirror by a bend at Ford - geograph.org.uk - 6059314.jpg` |
+| Fisika Dasar TPB P14 | CC BY-SA 4.0 | AntanO, `File:Convex lens (magnifying glass) and upside-down image.jpg` |
+| Fisika Dasar TPB P14 | CC BY-SA 2.5 | Eric Rolph at English Wikipedia, `File:Double-alaskan-rainbow.jpg` |
+| Fisika Dasar TPB P14 | CC BY-SA 3.0 | BigRiz, `File:Fibreoptic.jpg` |
+| Fisika Dasar TPB P15 | CC BY-SA 3.0 | Kabelleger / David Gubler (http://www.bahnbilder.ch), `File:VRB H 1-2 bei Freibergen.jpg` |
+| Fisika Dasar TPB P15 | CC BY-SA 2.0 | Bob Harvey, `File:Substation transformer - geograph.org.uk - 5573682.jpg` |
+| Fisika Dasar TPB P12 | CC BY 3.0 | Jan Ainali, `File:MRI-Philips.JPG` |
+| Fisika Dasar TPB P12 | CC BY 2.5 | S.J. de Waard, `File:Cut-away version of an electric motor (1).JPG` |
+| Fisika Dasar TPB P12 | CC BY-SA 3.0 | Wtshymanski, `File:Induction Cooktop Rolling Boil Cropped.jpg` |
+| Fisika Dasar TPB P12 | CC BY-SA 3.0 | Sebastian Terfloth, `File:Wirbelstrombremse aktiv.jpg` |
+| Fisika Dasar TPB P12 | CC BY 2.0 | Honda CB77 Restoration (Flickr), `File:Ignition coils.jpg` |
+| Fisika Dasar TPB P12 | CC BY 2.0 | Stefan Andrej Shambora, `File:High voltage transmission towers and lines.jpg` |
+
+Foto lain pada Pertemuan 10–15 berstatus domain publik atau CC0 (NOAA Photo Library, John G. Trump, Charles-Augustin de Coulomb, Walter Larden, Retired electrician, Ron Clausen, Evan-Amos, Emspangler at English Wikiversity, Original: unknown, Christian Albrecht Jensen, Thomas Phillips, United States Air Force photo by Senior Airman Joshua Strang, Alfred T. Palmer, Unidentified photographer. Smithsonian Institution from United States, After Thomas Lawrence, Ulfbastel, Elcap, John B. Livingood, Tyler C.).
+
+**Foto pada deck Karakterisasi Material (sejak 24 November 2026).** Minggu 9–14
+memuat foto dari Wikimedia Commons; atribusinya tercetak di bawah tiap foto
+(`\sumberfoto`). Selebihnya gambar dibuat sendiri dengan TikZ/pgfplots, dan
+citra AFM serta spektrum FTIR studi kasus adalah data sintetis buatan sendiri.
+Yang berlisensi BY/BY-SA diulang di sini:
+
+| Deck | Lisensi | Atribusi (Wikimedia Commons) |
+|---|---|---|
+| Karakterisasi Material Mg 9 | CC BY-SA 4.0 | Tadeáš Bednarz, `File:Scanning electron microscope - UFCH JH (2020) 01.jpg` |
+| Karakterisasi Material Mg 9 | CC BY-SA 3.0 | Zephyris, `File:SEMStubs.jpg` |
+| Karakterisasi Material Mg 9 | CC BY-SA 4.0 | Brandon Antonio Segura Torres & Priscilla Vieto Bonilla, `File:Muestras bañadas en oro para el SEM.jpg` |
+| Karakterisasi Material Mg 9 | CC BY-SA 4.0 | PaulT (Gunther Tschuch), `File:Hitachi S-2400 SEM 15.jpg` |
+| Karakterisasi Material Mg 9 | CC BY-SA 4.0 | ErwinMeier, `File:Schottky-Emitter 01.jpg` |
+| Karakterisasi Material Mg 9 | CC BY 4.0 | ZhanserikKT, `File:ZnO nanorods.tif` |
+| Karakterisasi Material Mg 9 | CC BY 4.0 | Luciasauter, `File:REM EDX 11.png` |
+| Karakterisasi Material Mg 9 | CC BY 4.0 | Kanet Abubakir, `File:EDS elemental mapping.png` |
+| Karakterisasi Material Mg 10 | CC BY-SA 3.0 | Hannes Grobe, `File:X-ray tube-co hg.jpg` |
+| Karakterisasi Material Mg 10 | CC BY-SA 4.0 | Warrenmck, `File:XYZ stage powder diffraction of solid sample.jpg` |
+| Karakterisasi Material Mg 10 | CC BY-SA 3.0 | Tizeff, `File:Laue-Cubic-Disoriented.PNG` |
+| Karakterisasi Material Mg 10 | CC BY-SA 3.0 | Kuebi = Armin Kübelbeck, `File:Debye-Scherrer-Kamera 01.jpg` |
+| Karakterisasi Material Mg 11 | CC BY-SA 3.0 | Zureks, `File:Atomic force microscope by Zureks.jpg` |
+| Karakterisasi Material Mg 11 | CC BY 2.5 | Kristian Mølhave, `File:Typical AFM cantilever.jpg` |
+| Karakterisasi Material Mg 11 | CC BY-SA 4.0 | Mehrabanian, `File:AFM 3D Topography Image of Silver Nanoparticles on Chitosan Film.tif` |
+| Karakterisasi Material Mg 11 | CC BY-SA 4.0 | Krischkrisch, `File:LB Film 1.5mN 2048 height extracted.jpg` |
+| Karakterisasi Material Mg 11 | CC BY-SA 4.0 | Matthias A. Fenner, `File:DNA Origami Triangular.png` |
+| Karakterisasi Material Mg 12 | CC BY 4.0 | Wang, F., Zhang, L., Zhang, X., Li, H. and Wu, S., `File:FTIR spectrometer.png` |
+| Karakterisasi Material Mg 12 | CC BY-SA 4.0 | Keshavana, `File:FTIR Spectrometer + ATR.jpg` |
+| Karakterisasi Material Mg 12 | CC BY-SA 4.0 | Willmichaels1012, `File:ATR accessory.jpg` |
+| Karakterisasi Material Mg 12 | CC BY-SA 3.0 | Cepheiden, `File:Infraredspectroscopy - transmission with Kbr pellets.jpg` |
+| Karakterisasi Material Mg 12 | CC BY-SA 3.0 | Izmaelt, `File:IR Spectrum of Tris(acetylacetonato)iron(III).png` |
+| Karakterisasi Material Mg 13 | CC BY-SA 4.0 | Retama, `File:Spectrophotometer cuvettes.JPG` |
+| Karakterisasi Material Mg 13 | CC BY-SA 2.5 | Hannes Grobe/AWI, `File:Fluorescent minerals hg.jpg` |
+| Karakterisasi Material Mg 13 | CC BY-SA 3.0 | Didier Descouens, `File:Calcite-Maroc-UV.jpg` |
+| Karakterisasi Material Mg 14 | CC BY-SA 4.0 | Rgarrigan, `File:Micromanipulator Semiautomatic Probe Station.jpg` |
+| Karakterisasi Material Mg 14 | CC BY-SA 4.0 | Radiotrefoil, `File:Multicrystalline silicon wafer with thin film iridescence.jpg` |
+| Karakterisasi Material Mg 14 | CC BY-SA 4.0 | Radiotrefoil, `File:4 inch float zone n-type silicon wafer with amorphous silicon thin film heterojunction structure.png` |
+| Karakterisasi Material Mg 14 | CC BY 3.0 | Tomasz Sienicki, `File:Digital universal multimeter (ubt).jpeg` |
+
+Foto lain berstatus domain publik atau CC0 (Elcap, XanaG, Wilhelm Röntgen, Limojoe at Czech Wikipedia, NIST, Joseph Stroscio et. al., TimVickers, NASA, Bullis, W. Murray).
+Deck Minggu 12 (FTIR) juga memuat tabel frekuensi gugus yang dipilih dari
+LibreTexts, "Infrared Spectroscopy Absorption Table" (CC BY-NC-SA 4.0), dengan
+sumber tercetak pada slidenya. Rinciannya ada pada
+`KULIAH/Karakterisasi Material/2026-2027 Ganjil/slides/gambar.csv`. Deck
+Karakterisasi Material lama (sebelum 2026/2027) tetap tidak diterbitkan.
 
 **Gambar dari publikasi sendiri digambar ulang.** Plot Tauc (MEOM Mg 4) dan
 kurva *J*–*V* (MEOM Mg 6) berasal dari M. A. Al Qadri dkk., *J. Electron. Mater.*
