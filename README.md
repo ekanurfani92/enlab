@@ -40,7 +40,7 @@ WEBSITE LAB/
 ├── index.html              Beranda (hero, tentang, riset, tim, fasilitas,
 │                           publikasi terbaru, pendanaan, tugas akhir,
 │                           pengajaran, galeri, kontak)
-├── publications.html       Daftar 57 publikasi + pencarian & filter
+├── publications.html       Daftar 69 publikasi + pencarian & filter
 ├── theses.html             63 judul tugas akhir, dikelompokkan per tahun
 ├── teaching.html           17 mata kuliah + 25 berkas materi yang dapat diunduh
 ├── 404.html                Halaman kesalahan
@@ -96,7 +96,7 @@ Buka `assets/js/data-publications.js`, sisipkan satu objek **di paling atas** da
 Nilai `k`: `journal` (jurnal internasional), `conference` (prosiding),
 `national` (jurnal nasional). Filter tahun pada halaman publikasi terisi otomatis.
 
-Angka **57** pada beranda ditulis manual di dua tempat — perbarui bila jumlah berubah:
+Angka **69** pada beranda ditulis manual di dua tempat — perbarui bila jumlah berubah:
 `tools/page_bodies.py` (statistik hero) dan `assets/js/i18n.js` (kunci `pub.lead`).
 
 ### 3.2 Menambah materi kuliah

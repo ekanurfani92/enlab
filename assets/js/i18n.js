@@ -106,7 +106,7 @@ window.I18N = {
 
     "pub.eyebrow": "Publikasi",
     "pub.h2": "Luaran riset terpilih.",
-    "pub.lead": "57 artikel pada jurnal internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.",
+    "pub.lead": "69 artikel pada jurnal internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.",
     "pub.all": "Lihat seluruh publikasi",
     "pub.page.h1": "Publikasi",
     "pub.page.lead": "Daftar lengkap artikel ilmiah Dr. Eka Nurfani dan tim ENLab. Klik judul untuk menelusuri artikel melalui Google Scholar.",
@@ -327,7 +327,7 @@ window.I18N = {
 
     "pub.eyebrow": "Publications",
     "pub.h2": "Selected research output.",
-    "pub.lead": "57 articles in reputable international journals, national journals, and conference proceedings since 2015.",
+    "pub.lead": "69 articles in reputable international journals, national journals, and conference proceedings since 2015.",
     "pub.all": "View all publications",
     "pub.page.h1": "Publications",
     "pub.page.lead": "Complete list of scientific articles by Dr. Eka Nurfani and the ENLab team. Click a title to look it up on Google Scholar.",

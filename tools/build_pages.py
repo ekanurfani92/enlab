@@ -594,7 +594,7 @@ if __name__ == "__main__":
              data=("publications", "grants", "theses")),
         page("publications.html", "meta.title.pub",
              "Publikasi | ENLab ITERA",
-             "Daftar lengkap 57 publikasi ilmiah Dr. Eka Nurfani dan tim ENLab ITERA pada jurnal "
+             "Daftar lengkap 69 publikasi ilmiah Dr. Eka Nurfani dan tim ENLab ITERA pada jurnal "
              "internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.",
              PUBLICATIONS_BODY, active="pub", data=("publications",)),
         page("theses.html", "meta.title.theses",

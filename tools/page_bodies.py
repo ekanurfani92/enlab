@@ -23,7 +23,7 @@ INDEX_BODY = """
             <a class="btn btn-ghost" href="#contact" data-i18n="hero.cta2">Bergabung dengan lab</a>
           </div>
           <div class="hero-stats">
-            <div><strong>57</strong><span data-i18n="hero.stat1">Publikasi ilmiah</span></div>
+            <div><strong>69</strong><span data-i18n="hero.stat1">Publikasi ilmiah</span></div>
             <div><strong>19</strong><span data-i18n="hero.stat2">Hibah penelitian</span></div>
             <div><strong>70+</strong><span data-i18n="hero.stat3">Mahasiswa bimbingan</span></div>
             <div><strong>3</strong><span data-i18n="hero.stat4">Paten terdaftar</span></div>
@@ -205,7 +205,7 @@ INDEX_BODY = """
         <div class="section-head reveal">
           <span class="eyebrow" data-i18n="pub.eyebrow">Publikasi</span>
           <h2 data-i18n="pub.h2">Luaran riset terpilih.</h2>
-          <p data-i18n="pub.lead">57 artikel pada jurnal internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.</p>
+          <p data-i18n="pub.lead">69 artikel pada jurnal internasional bereputasi, jurnal nasional, dan prosiding konferensi sejak 2015.</p>
         </div>
         <ul class="pub-list reveal" id="pub-latest"></ul>
         <p style="margin-top:24px">

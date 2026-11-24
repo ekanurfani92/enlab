@@ -2,11 +2,23 @@
    Menambah publikasi baru: sisipkan satu objek di paling atas daftar.
    y = tahun, t = judul, v = nama jurnal, d = volume/nomor, k = jenis (journal|conference|national) */
 window.PUBLICATIONS = [
+  {"y": 2026, "t": "Correlation between structural defects and charge storage kinetics in manganese oxide-based supercapacitor electrodes: the role of manganese precursor concentration", "v": "Ionics", "d": "Online first, doi:10.1007/s11581-026-07528-6", "k": "journal"},
+  {"y": 2026, "t": "Design and Optimization of CsPbI3 Perovskite Solar Cells Using SCAPS-1D", "v": "Greensusmater", "d": "Vol. 3, No. 1", "k": "national"},
   {"y": 2026, "t": "Effect of patchouli leaf extract (Pogostemon cablin Benth) concentration on the UV-protection properties of ZnO nanoparticles", "v": "Next Materials", "d": "Vol. 11, No. 101718", "k": "journal"},
   {"y": 2026, "t": "Effect of precursor molarity on the structural, morphological, and photovoltaic properties of MAPbI3 deposited under open-air conditions", "v": "Materials Science and Engineering: B", "d": "Vol. 323, No. 118686", "k": "journal"},
+  {"y": 2026, "t": "Electrospun ZnO Nanofiber Membranes for Photocatalytic Water Treatment: A Comparative Review of Fabrication Strategies", "v": "Greensusmater", "d": "Vol. 3, No. 1", "k": "national"},
+  {"y": 2026, "t": "High performance UV-protection properties of ZnO and TiO2 nanoparticles by eco-friendly synthesis using Elaeis guineensis Jacq extract", "v": "Vacuum", "d": "Vol. 249, No. 115256", "k": "journal"},
+  {"y": 2026, "t": "Influence of mineralizers on the phase evolution and surface defect chemistry of hydrothermal MnO2 nanomaterials", "v": "Journal of Alloys and Compounds Communications", "d": "Vol. 12, No. 100257", "k": "journal"},
+  {"y": 2026, "t": "NiO–Graphite Composite Electrodes for Dye-Sensitized Solar Cells: Correlating Morphology and Structure with Enhanced Photovoltaic Performance", "v": "Journal of Electronic Materials", "d": "Online first, doi:10.1007/s11664-026-13044-0", "k": "journal"},
+  {"y": 2026, "t": "Structural, optical, and electrical properties of Cu-doped NiO films synthesized by spray pyrolysis for potential gas sensing applications", "v": "Next Materials", "d": "Vol. 13, No. 102670", "k": "journal"},
+  {"y": 2026, "t": "Studi Awal Pengaruh Suhu Pemanasan pada Sintesis Material Phosphor BCNO dengan Getah Karet Sebagai Sumber Karbon", "v": "Wahana Fisika", "d": "Vol. 11, No. 1", "k": "national"},
+  {"y": 2026, "t": "Unlocking the Full Potential of Zinc Oxide/Cerium Oxide Composite Nanoparticles for Removal of Mixed Pharmaceutical and Dye Pollutants in Water", "v": "Advanced Materials Interfaces", "d": "No. e70472", "k": "journal"},
+  {"y": 2025, "t": "Advancing perovskite solar cells: Optical characterization and performance enhancement via spectroscopic ellipsometry", "v": "Journal of Science: Advanced Materials and Devices", "d": "Vol. 10, No. 100881", "k": "journal"},
   {"y": 2025, "t": "Blueshift of the optical bandgap in ZnO films by controlling the substrate temperature", "v": "Jurnal Fisika dan Aplikasinya", "d": "Vol. 21, No. 1", "k": "national"},
   {"y": 2025, "t": "Effect of Elaeis guineensis Jacq. Leaf extracts concentration in the optical, structure, morphology analysis of titanium dioxide nanoparticles", "v": "Results in Surfaces and Interfaces", "d": "Vol. 18, No. 100391", "k": "journal"},
+  {"y": 2025, "t": "Effect of Mn doping on the performance of ZnO-based dye-sensitized solar cells", "v": "Physica Scripta", "d": "Vol. 100, No. 065932", "k": "journal"},
   {"y": 2025, "t": "Effect of TiO2: Zn layer thickness on the performance of MAPbI3-based perovskite solar cells fabricated under open-air condition", "v": "Next Materials", "d": "Vol. 8, No. 100537", "k": "journal"},
+  {"y": 2025, "t": "Electrospun Rare-Earth Metal Oxide (CeO2) Nanofiber for the Degradation of Congo Red Aqueous Dyes", "v": "Science and Technology Indonesia", "d": "Vol. 10, No. 1", "k": "national"},
   {"y": 2025, "t": "Enhanced photocatalytic degradation of methylene blue using DEA-modified TiO2 thin films", "v": "Semiconductor Science and Technology", "d": "Vol. 40 (10), No. 105006", "k": "journal"},
   {"y": 2025, "t": "Fabrication of self-powered photodetector materials based on Ni-doped ZnO/p-Si heterojunctions", "v": "Next Materials", "d": "Vol. 9, No. 101215", "k": "journal"},
   {"y": 2025, "t": "Hydrothermal synthesis of CeO2/ZnO heterojunctions for effective photocatalytic degradation of organic pollutants", "v": "Materials Science and Engineering: B", "d": "Vol. 322, No. 118630", "k": "journal"},
